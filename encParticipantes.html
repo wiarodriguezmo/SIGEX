@@ -1,0 +1,363 @@
+<!DOCTYPE  html>
+<html lang="es" ng-app="app2">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"  />
+		<link rel="stylesheet" type="text/css" href="css/angucomplete.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"  />
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script src="js/ui-bootstrap-tpls-0.12.0.js"></script>
+		<script src="js/angular-locale_es-co.js"></script>
+	</head>
+	<body>
+
+		<div class="container-fluid" id="formulario" ng-controller="formulario2">
+			<h1>{{ mensaje }}</h1>
+
+			<form action="php/encP.php" method="post" name="formul" class="form-horizontal" novalidate>
+
+				<div class="form-group form-group-lg">
+					<label class="col-sm-3 control-label">Proyecto<label class="obligatorio"> *</label></label>
+					<div class="col-sm-8">
+						<div class="padded-row">
+							<angucomplete id="members" required
+							placeholder="Buscar por nombre del proyecto"
+							pause="400"
+							selectedobject="s"
+							url="php/consProy.php?proy="
+							datafield="records"
+							titlefield="nombre"
+							descriptionfield="descrip"
+							inputclass="form-control form-control-small" />
+						</div>
+						<div class="" ng-show="s">
+							Has seleccionado: <i><b>{{s.originalObject.nombre}}</b></i>
+						</div>
+						<input style="display:none" name="proyecto" type="text" ng-model="s.originalObject.nombre" >
+					</div>
+				</div>
+
+			  <div class="form-group form-group-lg">
+					<label class="col-sm-3 control-label" for="formGroupInputLarge">Participante<label class="obligatorio"> *</label></label>
+					<div class="row">
+						<div class="col-xs-3">
+						  <input class="form-control" type="text" placeholder="Nombre del participante" name="nombrePart" ng-model="user" ng-change="existente()" required>
+						</div>
+						<div ng-show="exist[0].existe=='NO'" class="col-xs-2">
+						  <input class="form-control" ng-model="dt"  name="fecha" type="date" ng-disabled="!(edadn==null || edadn=='')" placeholder="Fecha nacimiento" ng-click="open($event)" >
+
+							<input class="dropdown-menu dropdown-menu-right" type="hidden" datepicker-popup="yyyy-MM-dd" ng-model="dt" is-open="opened" ng-required="true" close-text="Close" />
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+							</span>
+						</div>
+						<div class="col-xs-2">
+							<input ng-show="exist[0].existe=='NO'" class="form-control" ng-model="edadn" ng-disabled="!(dt==null || dt=='')" type="text" placeholder="Edad (si desconoce fecha de nacimiento)" name="edad">
+						</div>
+						<div style="margin-left:26%" class="col-xs-3">
+							<input ng-show="exist[0].existe=='NO'" class="form-control" ng-model="lugarn" type="text" placeholder="Lugar de nacimiento" name="lugarn">
+						</div>
+					</div>
+			  </div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label">¿El encuestado tiene algún vínculo con el proyecto en mención?<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label class="btn btn-primary active">
+					    <input checked="checked" type="radio" name="vinculado" value="1"> SÍ
+					  </label>
+					  <label class="btn btn-primary">
+					    <input type="radio" name="vinculado" value="0"> NO
+					  </label>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> ¿Cuál es el vínculo del entrevistado con el proyecto?<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label class="btn btn-primary">
+					    <input ng-model="ceroCuatro" type="radio" name="ceroCuatro" value="1"> Director del proyecto
+					  </label>
+						<label class="btn btn-primary">
+					    <input ng-model="ceroCuatro" type="radio" name="ceroCuatro" value="2"> Parte del equipo técnico de la Universidad Nacional
+					  </label>
+						<label class="btn btn-primary">
+					    <input ng-model="ceroCuatro" type="radio" name="ceroCuatro" value="3"> Grupo administrativo
+					  </label>
+						<label class="btn btn-primary">
+					    <input ng-model="ceroCuatro" type="radio" name="ceroCuatro" value="4">Proveedor
+					  </label>
+					  <label class="btn btn-primary">
+					    <input ng-model="ceroCuatro" type="radio" name="ceroCuatro" value="5"> Otro
+					  </label>
+						<div class="col-xs-4">
+						  <input ng-show="ceroCuatro==5" class="form-control" type="text" placeholder="Cuál?" name="ceroCuatroOtro">
+						</div>
+					</div>
+				</div>
+
+				<h1>APORTES MISIONALES DEL PROYECTO</h1>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label" >¿A qué grupo de colaboradores del proyecto pertenece Ud?<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label class="btn btn-primary">
+					    <input type="radio" name="unouno" value="1"> Profesor de planta de la Universidad Nacional
+					  </label>
+						<label class="btn btn-primary">
+					    <input type="radio" name="unouno" value="2"> Profesor ocasional de la Universidad Nacional
+					  </label>
+						<label class="btn btn-primary">
+					    <input type="radio" name="unouno" value="3"> Estudiante de pregrado de la Universidad Nacional
+					  </label>
+						<label class="btn btn-primary">
+					    <input type="radio" name="unouno" value="4">Estudiante de posgrado de la Universidad Nacional
+					  </label>
+						<label class="btn btn-primary">
+							<input type="radio" name="unouno" value="5">Egresado de la Universidad Nacional
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="unouno" value="6">Profesional de otra Universidad de Colombia
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="unouno" value="7">Profesional de otra Universidad del exterior
+						</label>
+					  <label class="btn btn-primary">
+					    <input type="radio" name="unouno" value="8"> Otro
+					  </label>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label" >En términos generales considera Ud. que los aportes del proyecto al desarrollo de la actividad docente o de los planes de estudio de la
+facultad ha sido:<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label class="btn btn-primary">
+					    <input type="radio" name="unodos" value="1"> De gran importancia
+					  </label>
+						<label class="btn btn-primary">
+					    <input type="radio" name="unodos" value="2"> Importantes
+					  </label>
+						<label class="btn btn-primary">
+					    <input type="radio" name="unodos" value="3"> Poco importantes
+					  </label>
+						<label class="btn btn-primary">
+					    <input type="radio" name="unodos" value="4">Irrelevantes
+					  </label>
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label" >En términos generales considera Ud. que los aportes del proyecto al desarrollo de la investigación en la facultad ha sido:<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label class="btn btn-primary">
+					    <input type="radio" name="unotres" value="1"> De gran importancia
+					  </label>
+						<label class="btn btn-primary">
+					    <input type="radio" name="unotres" value="2"> Importantes
+					  </label>
+						<label class="btn btn-primary">
+					    <input type="radio" name="unotres" value="3"> Poco importantes
+					  </label>
+						<label class="btn btn-primary">
+					    <input type="radio" name="unotres" value="4">Irrelevantes
+					  </label>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label" >¿Considera Ud. que este proyecto fue emprendido bajo intereses y principios de la Universidad Nacional?
+						:<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label class="btn btn-primary">
+							<input type="radio" name="unocuatro" value="1"> Sí
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="unocuatro" value="0"> No
+						</label>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label" >En términos generales considera Ud. que el trabajo en equipo y colaborativo entre todos los miembros del grupo de trabajo:<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label class="btn btn-primary">
+							<input type="radio" name="unocinco" value="1"> Muy bueno
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="unocinco" value="2"> Bueno
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="unocinco" value="3"> Malo
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="unocinco" value="4">Muy malo
+						</label>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label" >¿Considera Ud. que este proyecto fue liderado por las unidades y facultades con mayor conocimiento y preparación de acuerdo a los temas
+que se tratan?:<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label class="btn btn-primary">
+							<input type="radio" name="unoseis" value="1"> Sí
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="unoseis" value="0"> No
+						</label>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label" >¿Considera Ud. que en este proyecto los participantes tenían las habilidades y competencias para adelantarlo con éxito?:<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label class="btn btn-primary">
+							<input type="radio" name="unosiete" value="1"> Sí
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="unosiete" value="0"> No
+						</label>
+					</div>
+				</div>
+
+			<h1>APORTES MISIONALES DEL PROYECTO</h1>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label" >¿Tuvo contacto con trámites administrativos u operativos de la Universidad para la ejecución del proyecto?:<label class="obligatorio"> *</label></label>
+				<div class="btn-group col-sm-8" data-toggle="buttons">
+					<label class="btn btn-primary">
+						<input type="radio" name="dosuno" value="1"> Sí
+					</label>
+					<label class="btn btn-primary">
+						<input type="radio" name="dosuno" value="0"> No
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label" >En términos generales considera Ud. que el trabajo en equipo y colaborativo entre todos los miembros del grupo de trabajo:<label class="obligatorio"> *</label></label>
+				<div class="btn-group col-sm-8" data-toggle="buttons">
+					<label class="btn btn-primary">
+						<input type="radio" name="dosdos" value="1"> Muy ágiles y oportunos
+					</label>
+					<label class="btn btn-primary">
+						<input type="radio" name="dosdos" value="2"> Ágiles y oportunos
+					</label>
+					<label class="btn btn-primary">
+						<input type="radio" name="dosdos" value="3"> Poco ágiles y poco oportunos
+					</label>
+					<label class="btn btn-primary">
+						<input type="radio" name="dosdos" value="4">Lentos e inoportunos
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label" >En términos generales considera Ud. que el trabajo en equipo y colaborativo entre todos los miembros del grupo de trabajo:<label class="obligatorio"> *</label></label>
+				<div class="btn-group col-sm-8" data-toggle="buttons">
+					<label class="btn btn-primary">
+						<input type="radio" name="dostres" value="1">Muy transparentes
+					</label>
+					<label class="btn btn-primary">
+						<input type="radio" name="dostres" value="2"> Transparentes
+					</label>
+					<label class="btn btn-primary">
+						<input type="radio" name="dostres" value="3"> Poco transparentes
+					</label>
+					<label class="btn btn-primary">
+						<input type="radio" name="dostres" value="4">Nada transparentes
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label" >En términos generales considera Ud. que el trabajo en equipo y colaborativo entre todos los miembros del grupo de trabajo:<label class="obligatorio"> *</label></label>
+				<div class="btn-group col-sm-8" data-toggle="buttons">
+					<label class="btn btn-primary">
+						<input type="radio" name="doscuatro" value="1">Muy bien
+					</label>
+					<label class="btn btn-primary">
+						<input type="radio" name="doscuatro" value="2"> Bien
+					</label>
+					<label class="btn btn-primary">
+						<input type="radio" name="doscuatro" value="3"> Mal
+					</label>
+					<label class="btn btn-primary">
+						<input type="radio" name="doscuatro" value="4">Muy mal
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label" >¿En general, cómo calificaría la eficiencia administrativa para este proyecto al interior de la Universidad Nacional?:<label class="obligatorio"> *</label></label>
+				<div class="btn-group col-sm-8" data-toggle="buttons">
+					<label class="btn btn-primary">
+						<input type="radio" name="doscinco" value="1">Muy eficiente
+					</label>
+					<label class="btn btn-primary">
+						<input type="radio" name="doscinco" value="2"> Eficiente
+					</label>
+					<label class="btn btn-primary">
+						<input type="radio" name="doscinco" value="3"> Poco eficiente
+					</label>
+					<label class="btn btn-primary">
+						<input type="radio" name="doscinco" value="4">Nada eficiente
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label" >Considera Ud. Que el apoyo de la dirección nacional de extensión para este proyecto fue:<label class="obligatorio"> *</label></label>
+				<div class="btn-group col-sm-8" data-toggle="buttons">
+					<label class="btn btn-primary">
+						<input type="radio" name="dosseis" value="1">Muy importante
+					</label>
+					<label class="btn btn-primary">
+						<input type="radio" name="dosseis" value="2"> Importante
+					</label>
+					<label class="btn btn-primary">
+						<input type="radio" name="dosseis" value="3"> Poco importante
+					</label>
+					<label class="btn btn-primary">
+						<input type="radio" name="dosseis" value="4">Irrelevante
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label" >Considera Ud. Que el apoyo de la Sede Regional de la Universidad para este proyecto fue:<label class="obligatorio"> *</label></label>
+				<div class="btn-group col-sm-8" data-toggle="buttons">
+					<label class="btn btn-primary">
+						<input type="radio" name="dossiete" value="1">Muy importante
+					</label>
+					<label class="btn btn-primary">
+						<input type="radio" name="dossiete" value="2"> Importante
+					</label>
+					<label class="btn btn-primary">
+						<input type="radio" name="dossiete" value="3"> Poco importante
+					</label>
+					<label class="btn btn-primary">
+						<input type="radio" name="dossiete" value="4">Irrelevante
+					</label>
+				</div>
+			</div>
+
+			  <div class="form-group form-group-lg">
+					<label class="col-sm-2 control-label" for="formGroupInputLarge">Los campos marcados con
+					<label class="obligatorio"> * </label> son obligatorios</label>
+			  </div>
+
+			<button type="submit" ng-disable="formul.$invalid" class="btn btn-primary btn-lg">Enviar</button>
+			</form>
+		</div>
+
+		<script type="text/javascript" src="js/app.js"></script>
+		<script type="text/javascript" src="js/directives/angucomplete.js"></script>
+		<script type="text/javascript" src="js/controller.js"></script>
+		<script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+	</body>
+</html>

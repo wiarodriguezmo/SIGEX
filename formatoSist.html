@@ -1,0 +1,381 @@
+<!DOCTYPE  html>
+<html lang="es" ng-app="app2">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"  />
+		<link rel="stylesheet" type="text/css" href="css/angucomplete.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"  />
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script src="js/ui-bootstrap-tpls-0.12.0.js"></script>
+		<script src="js/angular-locale_es-co.js"></script>
+		<script src="js/jquery.js"></script>
+		<style media="screen">
+			#unounootro {
+				display: none;
+			}
+		</style>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#unounoC").click(function(){
+					$("#unounootro").show(1000);
+				});
+			});
+
+			function myFunction() {
+    alert("I am an alert box!");
+}
+
+		</script >
+	</head>
+	<body>
+
+		<div class="container-fluid" id="formulario" ng-controller="formulario2">
+			<h1>{{ mensaje3 }}</h1>
+
+			<form action="php/formSist.php" method="post" name="formul" class="form-horizontal" novalidate>
+
+				<div class="form-group form-group-lg">
+					<label class="col-sm-3 control-label">Proyecto<label class="obligatorio"> *</label></label>
+					<div class="col-sm-8">
+						<div class="padded-row">
+							<angucomplete id="members" required
+							placeholder="Buscar por nombre del proyecto"
+							pause="400"
+							selectedobject="s"
+							url="php/consProy.php?proy="
+							datafield="records"
+							titlefield="nombre"
+							descriptionfield="descrip"
+							inputclass="form-control form-control-small" />
+						</div>
+						<div class="" ng-show="s">
+							Has seleccionado: <i><b>{{s.originalObject.nombre}}</b></i>
+						</div>
+						<input style="display:none" name="proyecto" type="text" ng-model="s.originalObject.nombre" >
+					</div>
+				</div>
+
+			  <div class="form-group form-group-lg">
+					<label class="col-sm-3 control-label" for="formGroupInputLarge">Participante<label class="obligatorio"> *</label></label>
+					<div class="row">
+						<div class="col-xs-3">
+						  <input class="form-control" type="text" placeholder="Nombre del participante" name="nombrePart" ng-model="user" ng-change="existente()" required>
+						</div>
+						<div ng-show="exist[0].existe=='NO'" class="col-xs-2">
+						  <input class="form-control" ng-model="dt"  name="fecha" type="date" ng-disabled="!(edadn==null || edadn=='')" placeholder="Fecha nacimiento" ng-click="open($event)" >
+
+							<input class="dropdown-menu dropdown-menu-right" type="hidden" datepicker-popup="yyyy-MM-dd" ng-model="dt" is-open="opened" ng-required="true" close-text="Close" />
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+							</span>
+						</div>
+						<div class="col-xs-2">
+							<input ng-show="exist[0].existe=='NO'" class="form-control" ng-model="edadn" ng-disabled="!(dt==null || dt=='')" type="text" placeholder="Edad (si desconoce fecha de nacimiento)" name="edad">
+						</div>
+						<div style="margin-left:26%" class="col-xs-3">
+							<input ng-show="exist[0].existe=='NO'" class="form-control" ng-model="lugarn" type="text" placeholder="Lugar de nacimiento" name="lugarn">
+						</div>
+					</div>
+			  </div>
+
+				<h1>Pertinencia académica y social</h1>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label" >¿Con qué tipo de sector estableció  vínculos el proyecto de extensión a su cargo?<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label class="btn btn-primary">
+					    <input type="radio" name="unouno" value="1">Sector estatal
+					  </label>
+						<label class="btn btn-primary">
+					    <input type="radio" name="unouno" value="2"> Sector privado
+					  </label>
+						<label class="btn btn-primary">
+					    <input type="radio" name="unouno" value="3"> Sector social o comunitario
+					  </label>
+						<label class="btn btn-primary">
+					    <input id="unounoC" type="radio" name="unouno" value="4" onclick="myFunction()">Otro
+					  </label>
+						<div class="col-xs-3">
+						  <input id="unounootro" class="form-control" type="text" placeholder="Otro valor" name="unounootro">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label" >¿Cuál es el objetivo general del proyecto?:<label class="obligatorio"> *</label></label>
+					<div class="col-sm-8">
+				    <input type="text" name="unodos" class="form-control">
+						<!-- necesario hacerlo una caja de texto -->
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label" >¿Con qué plan de la Universidad Nacional se relaciona el proyecto?:<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label class="btn btn-primary">
+							<input type="radio" name="unotres" value="1"> Plan Global de Desarrollo de la UN.
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="unotres" value="2"> Planes de sede
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="unotres" value="3"> Planes de facultad
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="unotres" value="4">Planes de institutos
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="unotres" value="5">Líneas de desarrollo académico
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="unotres" value="6">Otro
+						</label>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label" > Teniendo en cuenta la respuesta anterior ¿con qué objetivos específicos se relaciona?:<label class="obligatorio"> *</label></label>
+					<div class="col-sm-8">
+						<input class="form-control" type="text" name="unocuatro">
+						<!-- necesario hacerlo una caja de texto -->
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label" >¿El proyecto de extensión estuvo relacionado explícitamente con el Plan Estratégico de Extensión de la Sede o Facultad a la que pertenece el proyecto?:<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label class="btn btn-primary">
+							<input type="radio" name="unocinco" value="1"> Sí
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="unocinco" value="0"> No
+						</label>
+						<input class="form-control" type="text" placeholder="¿Por qué?" name="unocincoW">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label" > ¿El proyecto de extensión estuvo  relacionado con propósitos y metas previstas en algunos de los siguientes planes?:<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label class="btn btn-primary">
+							<input type="radio" name="unoseis" value="1"> Plan Nacional de Desarrollo
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="unoseis" value="2"> Planes departamentales de desarrollo
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="unoseis" value="3"> Planes locales de desarrollo
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="unoseis" value="4">Ninguno de los anteriores
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="unoseis" value="5">Otro
+						</label>
+						<input class="form-control" type="text" placeholder="Por favor, justifique su respuesta" name="unoseisuno">
+					</div>
+				</div>
+
+				<h1>Aportes académicos del proyecto.</h1>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label" >¿Qué aportes al conocimiento produjo la ejecución del proyecto?:<label class="obligatorio"> *</label></label>
+					<div class="col-sm-8">
+				    <input type="text" name="dosuno" class="form-control">
+						<!-- necesario hacerlo una caja de texto -->
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label" >¿Qué tipos de aporte a la docencia realizó el proyecto?:<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label class="btn btn-primary">
+							<input type="radio" name="dosdos" value="1">Plan de estudios.
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="dosdos" value="2"> Programas de las asignaturas
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="dosdos" value="3"> Metodologías de enseñanza
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="dosdos" value="4">Otro
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="dosdos" value="5">NO
+						</label>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label">¿Cuál fue su aporte en este tema?:<label class="obligatorio"> *</label></label>
+					<div class="col-sm-8">
+						<input class="form-control" type="text" name="dostres">
+						<!-- necesario hacerlo una caja de texto -->
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label" >¿El proyecto produjo innovación?:<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label class="btn btn-primary">
+							<input type="radio" name="doscuatro" value="1"> Sí
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="doscuatro" value="0"> No
+						</label>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label">¿Qué aportes en términos de innovación (tecnológica, metodológica, instrumental, social, pedagógica, entre otras) produjo la ejecución del proyecto?:<label class="obligatorio"> *</label></label>
+					<div class="col-sm-8">
+						<input class="form-control" type="text" name="doscinco">
+						<!-- necesario hacerlo una caja de texto -->
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label">¿De qué manera estos aportes se incorporaron a líneas de investigación o al desarrollo académico de la Universidad?:<label class="obligatorio"> *</label></label>
+					<div class="col-sm-8">
+						<input class="form-control" type="text" name="dosseis">
+						<!-- necesario hacerlo una caja de texto -->
+					</div>
+				</div>
+
+		<h1>Incidencia</h1>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label" >¿El proyecto contribuyó a la formulación, evaluación o ejecución de las políticas públicas?:<label class="obligatorio"> *</label></label>
+			<div class="btn-group col-sm-8" data-toggle="buttons">
+				<label class="btn btn-primary">
+					<input type="radio" name="tresuno" value="1"> Sí
+				</label>
+				<label class="btn btn-primary">
+					<input type="radio" name="tresuno" value="0"> No
+				</label>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">¿A cuál política?:<label class="obligatorio"> *</label></label>
+			<div class="col-sm-8">
+				<input class="form-control" type="text" name="tresdos">
+				<!-- necesario hacerlo una caja de texto -->
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">¿De qué forma?:<label class="obligatorio"> *</label></label>
+			<div class="col-sm-8">
+				<input class="form-control" type="text" name="trestres">
+				<!-- necesario hacerlo una caja de texto -->
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label" >¿El proyecto realizó una línea base de caracterización?:<label class="obligatorio"> *</label></label>
+			<div class="btn-group col-sm-8" data-toggle="buttons">
+				<label class="btn btn-primary">
+					<input type="radio" name="trescuatro" value="1"> Sí
+				</label>
+				<label class="btn btn-primary">
+					<input type="radio" name="trescuatro" value="0"> No
+				</label>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label" >¿Esta línea estableció la situación de partida en materia de Derechos Humanos?:<label class="obligatorio"> *</label></label>
+			<div class="btn-group col-sm-8" data-toggle="buttons">
+				<label class="btn btn-primary">
+					<input type="radio" name="trescinco" value="1"> Sí
+				</label>
+				<label class="btn btn-primary">
+					<input type="radio" name="trescinco" value="0"> No
+				</label>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label" >¿El proyecto contribuyó a la promoción, garantía o restitución de Derechos Humanos?:<label class="obligatorio"> *</label></label>
+			<div class="btn-group col-sm-8" data-toggle="buttons">
+				<label class="btn btn-primary">
+					<input type="radio" name="tresseis" value="1"> Sí
+				</label>
+				<label class="btn btn-primary">
+					<input type="radio" name="tresseis" value="0"> No
+				</label>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">¿De qué forma?:<label class="obligatorio"> *</label></label>
+			<div class="col-sm-8">
+				<input class="form-control" type="text" name="tressiete">
+				<!-- necesario hacerlo una caja de texto -->
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label" >¿El proyecto contribuyó a las decisiones corporativas de la empresa?:<label class="obligatorio"> *</label></label>
+			<div class="btn-group col-sm-8" data-toggle="buttons">
+				<label class="btn btn-primary">
+					<input type="radio" name="tresocho" value="1"> Sí
+				</label>
+				<label class="btn btn-primary">
+					<input type="radio" name="tresocho" value="0"> No
+				</label>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">¿A qué tipo de decisiones?:<label class="obligatorio"> *</label></label>
+			<div class="col-sm-8">
+				<input class="form-control" type="text" name="tresnueve">
+				<!-- necesario hacerlo una caja de texto -->
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label">¿De qué forma?:<label class="obligatorio"> *</label></label>
+			<div class="col-sm-8">
+				<input class="form-control" type="text" name="tresdiez">
+				<!-- necesario hacerlo una caja de texto -->
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label" >¿El proyecto aplicó algún tipo de instrumento para medir la percepción de satisfacción de los usuarios o beneficiarios?:<label class="obligatorio"> *</label></label>
+			<div class="btn-group col-sm-8" data-toggle="buttons">
+				<label class="btn btn-primary">
+					<input type="radio" name="tresonce" value="1"> Sí
+				</label>
+				<label class="btn btn-primary">
+					<input type="radio" name="tresonce" value="0"> No
+				</label>
+				<input class="form-control" type="text" placeholder="¿Por qué?" name="tresonceW">
+			</div>
+		</div>
+
+			  <div class="form-group form-group-lg">
+					<label class="col-sm-2 control-label" for="formGroupInputLarge">Los campos marcados con
+					<label class="obligatorio"> * </label> son obligatorios</label>
+			  </div>
+
+			<button type="submit" ng-disable="formul.$invalid" class="btn btn-primary btn-lg">Enviar</button>
+			</form>
+		</div>
+
+		<script type="text/javascript" src="js/app.js"></script>
+		<script type="text/javascript" src="js/directives/angucomplete.js"></script>
+		<script type="text/javascript" src="js/controller.js"></script>
+
+    <script src="js/bootstrap.js"></script>
+
+
+
+		</script>
+	</body>
+</html>
