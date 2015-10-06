@@ -26,16 +26,20 @@ $edadn = $_POST['edadn'];
 $lugarn = $_POST['lugarn'];
 
 $unouno = $_POST['unouno'];
+$unounootro = $_POST['unounootro'];
 $unodos = $_POST['unodos'];
 $unotres = $_POST['unotres'];
+$unotresotro = $_POST['unotresotro'];
 $unocuatro = $_POST['unocuatro'];
 $unocinco = $_POST['unocinco'];
 $unocincoW = $_POST['unocincoW'];
 $unoseis = $_POST['unoseis'];
+$unoseisotro = $_POST['unoseisotro'];
 $unoseisuno = $_POST['unoseisuno'];
 
 $dosuno = $_POST['dosuno'];
 $dosdos = $_POST['dosdos'];
+$dosdosotro = $_POST['dosdosotro'];
 $dostres = $_POST['dostres'];
 $doscuatro = $_POST['doscuatro'];
 $doscinco = $_POST['doscinco'];
@@ -52,7 +56,7 @@ $tresocho = $_POST['tresocho'];
 $tresnueve = $_POST['tresnueve'];
 $tresdiez = $_POST['tresdiez'];
 $tresonce = $_POST['tresonce'];
-$tresonce = $_POST['tresonceW'];
+$tresoncew = $_POST['tresonceW'];
 
 if($fecha.$edadn.$lugarn != ""){
   if ($edadn == "") {
@@ -66,7 +70,7 @@ $result = $conn->query($sqlP);
 $rs = $result->fetch_array(MYSQLI_ASSOC);
 $participante = $rs['idPersona'];
 
-$sql = "INSERT INTO FormSistemat(`1.1`, `1.1Otro`, `1.2`, `1.3`, `1.4`, `1.5`, `1.5why`, `1.6`, `1.6.1`, `2.1`, `2.2`, `2.2Otro`, `2.3`, `2.4`, `2.5`, `2.6`, `3.1`, `3.2`, `3.3`, `3.4`, `3.5`, `3.6`, `3.7`, `3.8`, `3.9`, `3.10`, `3.11`, `3.11why`, `director`, `proyecto`) VALUES ('".$unouno."',NULL,'".$unodos."','".$unotres."','".$unocuatro."','".$unocinco."','".$unocincoW."','".$unoseis."','".$unoseisuno."','".$dosuno."', '". $dosdos ."',NULL, '".$dostres."', '".$doscuatro."','".$doscinco."','".$dosseis."','".$tresuno."','".$tresdos."','".$trestres."','".$trescuatro."','".$trescinco."','".$tresseis."','".$tressiete."','".$tresocho."','".$tresnueve."','".$tresdiez."','".$tresonce."','".$tresoncew."','".$participante."','".$proyecto."')";
+$sql = "INSERT INTO FormSistemat(`1.1`, `1.1Otro`, `1.2`, `1.3`, `1.3Otro`, `1.4`, `1.5`, `1.5why`, `1.6`, `1.6Otro`, `1.6.1`, `2.1`, `2.2`, `2.2Otro`, `2.3`, `2.4`, `2.5`, `2.6`, `3.1`, `3.2`, `3.3`, `3.4`, `3.5`, `3.6`, `3.7`, `3.8`, `3.9`, `3.10`, `3.11`, `3.11why`, `director`, `proyecto`) VALUES ('".$unouno."','".$unounootro."','".$unodos."','".$unotres."','".$unotresotro."','".$unocuatro."','".$unocinco."','".$unocincoW."','".$unoseis."','".$unoseisotro."','".$unoseisuno."','".$dosuno."', '". $dosdos ."', '". $dosdosotro ."', '".$dostres."', '".$doscuatro."','".$doscinco."','".$dosseis."','".$tresuno."','".$tresdos."','".$trestres."','".$trescuatro."','".$trescinco."','".$tresseis."','".$tressiete."','".$tresocho."','".$tresnueve."','".$tresdiez."','".$tresonce."','".$tresoncew."','".$participante."','".$proyecto."')";
 
 if ($conn->query($sql) === TRUE) {
 	header("Location: ../resp/exitoso.php?hizo=formato de sistematización");

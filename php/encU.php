@@ -29,7 +29,9 @@ $ceroCuatro = $_POST['ceroCuatro'];
 $ceroCuatroOtro = $_POST['ceroCuatroOtro'];
 
 $unouno = $_POST['unouno'];
+$unounootro = $_POST['unounootro'];
 $unodos = $_POST['unodos'];
+$unodosW = $_POST['unodosW'];
 
 $dosuno = $_POST['dosuno'];
 $dosdos = $_POST['dosdos'];
@@ -54,7 +56,7 @@ $result = $conn->query($sqlP);
 $rs = $result->fetch_array(MYSQLI_ASSOC);
 $participante = $rs['idPersona'];
 
-$sql = "INSERT INTO EncUsuarios(`0.3`, `0.4`, `0.4Otro`, `1.1`, `1.1Otro`, `1.2`, `2.1`, `2.2`, `3.1`, `3.2`, `3.3`, `4.1`, `4.2`, `4.3`, `usuario`, `proyecto`) VALUES ('".$vinculado."','".$ceroCuatro."','".$ceroCuatroOtro."','".$unouno."',NULL,'".$unodos."','".$dosuno."','".$dosdos."','".$tresuno."','".$tresdos."','".$trestres."', '". $cuatrouno ."', '".$cuatrodos."', '".$cuatrotres."','".$participante."','".$proyecto."')";
+$sql = "INSERT INTO EncUsuarios(`0.3`, `0.4`, `0.4Otro`, `1.1`, `1.1Otro`, `1.2`, `1.2W`, `2.1`, `2.2`, `3.1`, `3.2`, `3.3`, `4.1`, `4.2`, `4.3`, `usuario`, `proyecto`) VALUES ('".$vinculado."','".$ceroCuatro."','".$ceroCuatroOtro."','".$unouno."','".$unounootro."','".$unodos."','".$unodosW."','".$dosuno."','".$dosdos."','".$tresuno."','".$tresdos."','".$trestres."', '". $cuatrouno ."', '".$cuatrodos."', '".$cuatrotres."','".$participante."','".$proyecto."')";
 
 if ($conn->query($sql) === TRUE) {
 	header("Location: ../resp/exitoso.php?hizo=Encuesta a usuarios");

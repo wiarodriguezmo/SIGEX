@@ -27,7 +27,7 @@ else if ($sede == "Medellín" )$facultad = $_POST['facultad2'];
 else if ($sede == "Palmira" )$facultad = $_POST['facultad4'];
 else $facultad = $_POST['facultad5'];
 $region = $_POST['region'];
-$fecha = $_POST['fecha'];
+$fecha = date('Y/m/d');
 $modalidad = $_POST['modalidad'];
 
 
@@ -43,4 +43,4 @@ if ($conn->query($sql) === TRUE) {
 }
 
 $conn->close();
-?> 
+?>

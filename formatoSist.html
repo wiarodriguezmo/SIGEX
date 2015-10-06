@@ -9,27 +9,59 @@
 		<script src="js/ui-bootstrap-tpls-0.12.0.js"></script>
 		<script src="js/angular-locale_es-co.js"></script>
 		<script src="js/jquery.js"></script>
-		<style media="screen">
-			#unounootro {
-				display: none;
-			}
-		</style>
 
 		<script type="text/javascript">
-			$(document).ready(function(){
-				$("#unounoC").click(function(){
-					$("#unounootro").show(1000);
-				});
-			});
-
-			function myFunction() {
-    alert("I am an alert box!");
-}
-
+		  $(document).ready(function(){
+		      $("#unounoC").click(function(){
+		        $("#unounootro").show(800);
+		      });
+					$("#unotresC").click(function(){
+						$("#unotresotro").show(800);
+					});
+					$("#unoseisC").click(function(){
+						$("#unoseisotro").show(800);
+					});
+					$("#dosdosC").click(function(){
+						$("#dosdosotro").show(800);
+					});
+					$("#dosdosN").click(function(){
+					    $("#dostres").hide(800);
+					});
+					$("#doscuatroN").click(function(){
+					    $("#block2").hide(700);
+					});
+					$("#doscuatroS").click(function(){
+							$("#block2").show(700);
+					});
+					$("#tresunoN").click(function(){
+					    $("#block3uno").hide(700);
+					});
+					$("#tresunoS").click(function(){
+							$("#block3uno").show(700);
+					});
+					$("#trescuatroN").click(function(){
+					    $("#trescinco").hide(700);
+					});
+					$("#trescuatroS").click(function(){
+							$("#trescinco").show(700);
+					});
+					$("#tresseisN").click(function(){
+					    $("#tressiete").hide(700);
+					});
+					$("#tresseisS").click(function(){
+							$("#tressiete").show(700);
+					});
+					$("#tresochoN").click(function(){
+					    $("#block3dos").hide(700);
+					});
+					$("#tresochoS").click(function(){
+							$("#block3dos").show(700);
+					});
+		  });
 		</script >
+
 	</head>
 	<body>
-
 		<div class="container-fluid" id="formulario" ng-controller="formulario2">
 			<h1>{{ mensaje3 }}</h1>
 
@@ -93,11 +125,11 @@
 						<label class="btn btn-primary">
 					    <input type="radio" name="unouno" value="3"> Sector social o comunitario
 					  </label>
-						<label class="btn btn-primary">
-					    <input id="unounoC" type="radio" name="unouno" value="4" onclick="myFunction()">Otro
-					  </label>
-						<div class="col-xs-3">
-						  <input id="unounootro" class="form-control" type="text" placeholder="Otro valor" name="unounootro">
+						<label id="unounoC" class="btn btn-primary">
+							<input type="radio" name="unouno" value="4">Otro
+						</label>
+						<div class="col-sm-4 col-xs-6">
+							<input style="display:none" id="unounootro" name="unounootro" class="form-control" type="text" placeholder="Aquí el otro valor">
 						</div>
 					</div>
 				</div>
@@ -105,8 +137,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label" >¿Cuál es el objetivo general del proyecto?:<label class="obligatorio"> *</label></label>
 					<div class="col-sm-8">
-				    <input type="text" name="unodos" class="form-control">
-						<!-- necesario hacerlo una caja de texto -->
+				    <textarea placeholder="Escriba el objetivo" name="unodos" rows="4" class="form-control"></textarea>
 					</div>
 				</div>
 
@@ -129,16 +160,24 @@
 							<input type="radio" name="unotres" value="5">Líneas de desarrollo académico
 						</label>
 						<label class="btn btn-primary">
-							<input type="radio" name="unotres" value="6">Otro
+							<input type="radio" name="unotres" value="6">No se sabe
 						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="unotres" value="7">Ninguno
+						</label>
+						<label id="unotresC" class="btn btn-primary">
+							<input type="radio" name="unotres" value="8">Otro
+						</label>
+						<div class="col-sm-4 col-xs-6">
+							<input style="display:none" id="unotresotro" name="unotresotro" class="form-control" type="text" placeholder="Aquí el otro valor">
+						</div>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="col-sm-3 control-label" > Teniendo en cuenta la respuesta anterior ¿con qué objetivos específicos se relaciona?:<label class="obligatorio"> *</label></label>
 					<div class="col-sm-8">
-						<input class="form-control" type="text" name="unocuatro">
-						<!-- necesario hacerlo una caja de texto -->
+				    <textarea placeholder="Escriba los objetivos" name="unocuatro" rows="4" class="form-control"></textarea>
 					</div>
 				</div>
 
@@ -151,7 +190,9 @@
 						<label class="btn btn-primary">
 							<input type="radio" name="unocinco" value="0"> No
 						</label>
-						<input class="form-control" type="text" placeholder="¿Por qué?" name="unocincoW">
+						<div class="col-sm-8">
+					    <textarea placeholder="¿Por qué?" name="unocincoW" rows="2" class="form-control"></textarea>
+						</div>
 					</div>
 				</div>
 
@@ -170,10 +211,15 @@
 						<label class="btn btn-primary">
 							<input type="radio" name="unoseis" value="4">Ninguno de los anteriores
 						</label>
-						<label class="btn btn-primary">
+						<label id="unoseisC" class="btn btn-primary">
 							<input type="radio" name="unoseis" value="5">Otro
 						</label>
-						<input class="form-control" type="text" placeholder="Por favor, justifique su respuesta" name="unoseisuno">
+						<div class="col-sm-4 col-xs-6">
+							<input style="display:none" id="unoseisotro" name="unoseisotro" class="form-control" type="text" placeholder="Aquí el otro valor">
+						</div>
+					</div>
+					<div style="margin-top:5px" class="col-sm-8">
+						<textarea placeholder="Por favor, justifique su respuesta" name="unoseisuno" rows="2" class="form-control"></textarea>
 					</div>
 				</div>
 
@@ -182,8 +228,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label" >¿Qué aportes al conocimiento produjo la ejecución del proyecto?:<label class="obligatorio"> *</label></label>
 					<div class="col-sm-8">
-				    <input type="text" name="dosuno" class="form-control">
-						<!-- necesario hacerlo una caja de texto -->
+						<textarea placeholder="Escriba acá los aportes" name="dosuno" rows="4" class="form-control"></textarea>
 					</div>
 				</div>
 
@@ -199,48 +244,50 @@
 						<label class="btn btn-primary">
 							<input type="radio" name="dosdos" value="3"> Metodologías de enseñanza
 						</label>
-						<label class="btn btn-primary">
+						<label id="dosdosN" class="btn btn-primary">
+							<input type="radio" name="dosdos" value="5">No hubo
+						</label>
+						<label id="dosdosC" class="btn btn-primary">
 							<input type="radio" name="dosdos" value="4">Otro
 						</label>
-						<label class="btn btn-primary">
-							<input type="radio" name="dosdos" value="5">NO
-						</label>
+						<div class="col-sm-4 col-xs-6">
+							<input style="display:none" id="dosdosotro" name="dosdosotro" class="form-control" type="text" placeholder="Aquí el otro valor">
+						</div>
 					</div>
 				</div>
 
-				<div class="form-group">
+				<div id="dostres" class="form-group">
 					<label class="col-sm-3 control-label">¿Cuál fue su aporte en este tema?:<label class="obligatorio"> *</label></label>
 					<div class="col-sm-8">
-						<input class="form-control" type="text" name="dostres">
-						<!-- necesario hacerlo una caja de texto -->
+						<textarea placeholder="Escriba acá los aportes" name="dostres" rows="4" class="form-control"></textarea>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="col-sm-3 control-label" >¿El proyecto produjo innovación?:<label class="obligatorio"> *</label></label>
+					<label class="col-sm-3 control-label" >¿El proyecto produjo alguna innovación?:<label class="obligatorio"> *</label></label>
 					<div class="btn-group col-sm-8" data-toggle="buttons">
-						<label class="btn btn-primary">
+						<label id="doscuatroS" class="btn btn-primary">
 							<input type="radio" name="doscuatro" value="1"> Sí
 						</label>
-						<label class="btn btn-primary">
+						<label id="doscuatroN" class="btn btn-primary">
 							<input type="radio" name="doscuatro" value="0"> No
 						</label>
 					</div>
 				</div>
 
-				<div class="form-group">
-					<label class="col-sm-3 control-label">¿Qué aportes en términos de innovación (tecnológica, metodológica, instrumental, social, pedagógica, entre otras) produjo la ejecución del proyecto?:<label class="obligatorio"> *</label></label>
-					<div class="col-sm-8">
-						<input class="form-control" type="text" name="doscinco">
-						<!-- necesario hacerlo una caja de texto -->
+				<div id="block2">
+					<div class="form-group">
+						<label class="col-sm-3 control-label">¿Qué aportes en términos de innovación (tecnológica, metodológica, instrumental, social, pedagógica, entre otras) produjo la ejecución del proyecto?:<label class="obligatorio"> *</label></label>
+						<div class="col-sm-8">
+							<textarea placeholder="Escriba acá los aportes" name="doscinco" rows="4" class="form-control"></textarea>
+						</div>
 					</div>
-				</div>
 
-				<div class="form-group">
-					<label class="col-sm-3 control-label">¿De qué manera estos aportes se incorporaron a líneas de investigación o al desarrollo académico de la Universidad?:<label class="obligatorio"> *</label></label>
-					<div class="col-sm-8">
-						<input class="form-control" type="text" name="dosseis">
-						<!-- necesario hacerlo una caja de texto -->
+					<div class="form-group">
+						<label class="col-sm-3 control-label">¿De qué manera estos aportes se incorporaron a líneas de investigación o al desarrollo académico de la Universidad?:<label class="obligatorio"> *</label></label>
+						<div class="col-sm-8">
+							<textarea placeholder="Escriba su respuesta acá" name="dosseis" rows="4" class="form-control"></textarea>
+						</div>
 					</div>
 				</div>
 
@@ -249,44 +296,44 @@
 		<div class="form-group">
 			<label class="col-sm-3 control-label" >¿El proyecto contribuyó a la formulación, evaluación o ejecución de las políticas públicas?:<label class="obligatorio"> *</label></label>
 			<div class="btn-group col-sm-8" data-toggle="buttons">
-				<label class="btn btn-primary">
+				<label id="tresunoS" class="btn btn-primary">
 					<input type="radio" name="tresuno" value="1"> Sí
 				</label>
-				<label class="btn btn-primary">
+				<label id="tresunoN" class="btn btn-primary">
 					<input type="radio" name="tresuno" value="0"> No
 				</label>
 			</div>
 		</div>
 
-		<div class="form-group">
-			<label class="col-sm-3 control-label">¿A cuál política?:<label class="obligatorio"> *</label></label>
-			<div class="col-sm-8">
-				<input class="form-control" type="text" name="tresdos">
-				<!-- necesario hacerlo una caja de texto -->
+		<div id="block3uno">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">¿A cuál política?:<label class="obligatorio"> *</label></label>
+				<div class="col-sm-8">
+					<textarea placeholder="Escriba acá su respuesta" name="tresdos" rows="1" class="form-control"></textarea>
+				</div>
 			</div>
-		</div>
 
-		<div class="form-group">
-			<label class="col-sm-3 control-label">¿De qué forma?:<label class="obligatorio"> *</label></label>
-			<div class="col-sm-8">
-				<input class="form-control" type="text" name="trestres">
-				<!-- necesario hacerlo una caja de texto -->
+			<div class="form-group">
+				<label class="col-sm-3 control-label">¿De qué forma?:<label class="obligatorio"> *</label></label>
+				<div class="col-sm-8">
+					<textarea placeholder="Escriba acá su respuesta" name="trestres" rows="3" class="form-control"></textarea>
+				</div>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<label class="col-sm-3 control-label" >¿El proyecto realizó una línea base de caracterización?:<label class="obligatorio"> *</label></label>
 			<div class="btn-group col-sm-8" data-toggle="buttons">
-				<label class="btn btn-primary">
+				<label id="trescuatroS" class="btn btn-primary">
 					<input type="radio" name="trescuatro" value="1"> Sí
 				</label>
-				<label class="btn btn-primary">
+				<label id="trescuatroN" class="btn btn-primary">
 					<input type="radio" name="trescuatro" value="0"> No
 				</label>
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div id="trescinco" class="form-group">
 			<label class="col-sm-3 control-label" >¿Esta línea estableció la situación de partida en materia de Derechos Humanos?:<label class="obligatorio"> *</label></label>
 			<div class="btn-group col-sm-8" data-toggle="buttons">
 				<label class="btn btn-primary">
@@ -301,48 +348,47 @@
 		<div class="form-group">
 			<label class="col-sm-3 control-label" >¿El proyecto contribuyó a la promoción, garantía o restitución de Derechos Humanos?:<label class="obligatorio"> *</label></label>
 			<div class="btn-group col-sm-8" data-toggle="buttons">
-				<label class="btn btn-primary">
+				<label id="tresseisS" class="btn btn-primary">
 					<input type="radio" name="tresseis" value="1"> Sí
 				</label>
-				<label class="btn btn-primary">
+				<label id="tresseisN" class="btn btn-primary">
 					<input type="radio" name="tresseis" value="0"> No
 				</label>
 			</div>
 		</div>
 
-		<div class="form-group">
+		<div id="tressiete" class="form-group">
 			<label class="col-sm-3 control-label">¿De qué forma?:<label class="obligatorio"> *</label></label>
 			<div class="col-sm-8">
-				<input class="form-control" type="text" name="tressiete">
-				<!-- necesario hacerlo una caja de texto -->
+				<textarea placeholder="Escriba acá su respuesta" name="tressiete" rows="3" class="form-control"></textarea>
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label class="col-sm-3 control-label" >¿El proyecto contribuyó a las decisiones corporativas de la empresa?:<label class="obligatorio"> *</label></label>
+			<label class="col-sm-3 control-label" >¿El proyecto contribuyó a las decisiones corporativas o políticas de la institución y/o la empresa? :<label class="obligatorio"> *</label></label>
 			<div class="btn-group col-sm-8" data-toggle="buttons">
-				<label class="btn btn-primary">
+				<label id="tresochoS" class="btn btn-primary">
 					<input type="radio" name="tresocho" value="1"> Sí
 				</label>
-				<label class="btn btn-primary">
+				<label id="tresochoN" class="btn btn-primary">
 					<input type="radio" name="tresocho" value="0"> No
 				</label>
 			</div>
 		</div>
 
-		<div class="form-group">
-			<label class="col-sm-3 control-label">¿A qué tipo de decisiones?:<label class="obligatorio"> *</label></label>
-			<div class="col-sm-8">
-				<input class="form-control" type="text" name="tresnueve">
-				<!-- necesario hacerlo una caja de texto -->
+		<div id="block3dos">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">¿A qué tipo de decisiones?:<label class="obligatorio"> *</label></label>
+				<div class="col-sm-8">
+					<textarea placeholder="Escriba acá su respuesta" name="tresnueve" rows="2" class="form-control"></textarea>
+				</div>
 			</div>
-		</div>
 
-		<div class="form-group">
-			<label class="col-sm-3 control-label">¿De qué forma?:<label class="obligatorio"> *</label></label>
-			<div class="col-sm-8">
-				<input class="form-control" type="text" name="tresdiez">
-				<!-- necesario hacerlo una caja de texto -->
+			<div class="form-group">
+				<label class="col-sm-3 control-label">¿De qué forma?:<label class="obligatorio"> *</label></label>
+				<div class="col-sm-8">
+					<textarea placeholder="Escriba acá su respuesta" name="tresdiez" rows="3" class="form-control"></textarea>
+				</div>
 			</div>
 		</div>
 
@@ -355,7 +401,9 @@
 				<label class="btn btn-primary">
 					<input type="radio" name="tresonce" value="0"> No
 				</label>
-				<input class="form-control" type="text" placeholder="¿Por qué?" name="tresonceW">
+			</div>
+			<div class="col-sm-8">
+				<textarea placeholder="¿Por qué?" name="tresonceW" rows="1" class="form-control"></textarea>
 			</div>
 		</div>
 
