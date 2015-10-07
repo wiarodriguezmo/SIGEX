@@ -89,7 +89,7 @@
 				</div>
 
 			  <div class="form-group form-group-lg">
-					<label class="col-sm-3 control-label" for="formGroupInputLarge">Participante<label class="obligatorio"> *</label></label>
+					<label class="col-sm-3 control-label" for="formGroupInputLarge">Director<label class="obligatorio"> *</label></label>
 					<div class="row">
 						<div class="col-xs-3">
 						  <input class="form-control" type="text" placeholder="Nombre del participante" name="nombrePart" ng-model="user" ng-change="existente()" required>
@@ -117,16 +117,19 @@
 					<label class="col-sm-3 control-label" >¿Con qué tipo de sector estableció  vínculos el proyecto de extensión a su cargo?<label class="obligatorio"> *</label></label>
 					<div class="btn-group col-sm-8" data-toggle="buttons">
 						<label class="btn btn-primary">
-					    <input type="radio" name="unouno" value="1">Sector estatal
+					    <input type="checkbox" autocomplete="off" name="unouno[]" value="1">Sector estatal
 					  </label>
 						<label class="btn btn-primary">
-					    <input type="radio" name="unouno" value="2"> Sector privado
+					    <input type="checkbox" autocomplete="off" name="unouno[]" value="2"> Sector privado
 					  </label>
 						<label class="btn btn-primary">
-					    <input type="radio" name="unouno" value="3"> Sector social o comunitario
+					    <input type="checkbox" autocomplete="off" name="unouno[]" value="3"> Sector social o comunitario
+					  </label>
+						<label class="btn btn-primary">
+					    <input type="checkbox" autocomplete="off" name="unouno[]" value="4"> ONG
 					  </label>
 						<label id="unounoC" class="btn btn-primary">
-							<input type="radio" name="unouno" value="4">Otro
+							<input type="checkbox" autocomplete="off" name="unouno[]" value="5">Otro
 						</label>
 						<div class="col-sm-4 col-xs-6">
 							<input style="display:none" id="unounootro" name="unounootro" class="form-control" type="text" placeholder="Aquí el otro valor">
@@ -145,28 +148,28 @@
 					<label class="col-sm-3 control-label" >¿Con qué plan de la Universidad Nacional se relaciona el proyecto?:<label class="obligatorio"> *</label></label>
 					<div class="btn-group col-sm-8" data-toggle="buttons">
 						<label class="btn btn-primary">
-							<input type="radio" name="unotres" value="1"> Plan Global de Desarrollo de la UN.
+							<input  type="checkbox" autocomplete="off" name="unotres[]" value="1"> Plan Global de Desarrollo de la UN.
 						</label>
 						<label class="btn btn-primary">
-							<input type="radio" name="unotres" value="2"> Planes de sede
+							<input type="checkbox" autocomplete="off" name="unotres[]" value="2"> Planes de sede
 						</label>
 						<label class="btn btn-primary">
-							<input type="radio" name="unotres" value="3"> Planes de facultad
+							<input type="checkbox" autocomplete="off" name="unotres[]" value="3"> Planes de facultad
 						</label>
 						<label class="btn btn-primary">
-							<input type="radio" name="unotres" value="4">Planes de institutos
+							<input type="checkbox" autocomplete="off" name="unotres[]" value="4">Planes de institutos
 						</label>
 						<label class="btn btn-primary">
-							<input type="radio" name="unotres" value="5">Líneas de desarrollo académico
+							<input type="checkbox" autocomplete="off" name="unotres[]" value="5">Líneas de desarrollo académico
 						</label>
 						<label class="btn btn-primary">
-							<input type="radio" name="unotres" value="6">No se sabe
+							<input type="checkbox" autocomplete="off" name="unotres[]" value="6">No se sabe
 						</label>
 						<label class="btn btn-primary">
-							<input type="radio" name="unotres" value="7">Ninguno
+							<input type="checkbox" autocomplete="off" name="unotres[]" value="7">Ninguno
 						</label>
 						<label id="unotresC" class="btn btn-primary">
-							<input type="radio" name="unotres" value="8">Otro
+							<input type="checkbox" autocomplete="off" name="unotres[]" value="8">Otro
 						</label>
 						<div class="col-sm-4 col-xs-6">
 							<input style="display:none" id="unotresotro" name="unotresotro" class="form-control" type="text" placeholder="Aquí el otro valor">
@@ -200,19 +203,19 @@
 					<label class="col-sm-3 control-label" > ¿El proyecto de extensión estuvo  relacionado con propósitos y metas previstas en algunos de los siguientes planes?:<label class="obligatorio"> *</label></label>
 					<div class="btn-group col-sm-8" data-toggle="buttons">
 						<label class="btn btn-primary">
-							<input type="radio" name="unoseis" value="1"> Plan Nacional de Desarrollo
+							<input type="checkbox" autocomplete="off" name="unoseis[]" value="1"> Plan Nacional de Desarrollo
 						</label>
 						<label class="btn btn-primary">
-							<input type="radio" name="unoseis" value="2"> Planes departamentales de desarrollo
+							<input type="checkbox" autocomplete="off" name="unoseis[]" value="2"> Planes departamentales de desarrollo
 						</label>
 						<label class="btn btn-primary">
-							<input type="radio" name="unoseis" value="3"> Planes locales de desarrollo
+							<input type="checkbox" autocomplete="off" name="unoseis[]" value="3"> Planes locales de desarrollo
 						</label>
 						<label class="btn btn-primary">
-							<input type="radio" name="unoseis" value="4">Ninguno de los anteriores
+							<input type="checkbox" autocomplete="off" name="unoseis[]" value="4">Ninguno de los anteriores
 						</label>
 						<label id="unoseisC" class="btn btn-primary">
-							<input type="radio" name="unoseis" value="5">Otro
+							<input type="checkbox" autocomplete="off" name="unoseis[]" value="5">Otro
 						</label>
 						<div class="col-sm-4 col-xs-6">
 							<input style="display:none" id="unoseisotro" name="unoseisotro" class="form-control" type="text" placeholder="Aquí el otro valor">
@@ -236,19 +239,19 @@
 					<label class="col-sm-3 control-label" >¿Qué tipos de aporte a la docencia realizó el proyecto?:<label class="obligatorio"> *</label></label>
 					<div class="btn-group col-sm-8" data-toggle="buttons">
 						<label class="btn btn-primary">
-							<input type="radio" name="dosdos" value="1">Plan de estudios.
+							<input type="checkbox" autocomplete="off" name="dosdos[]" value="1">Plan de estudios.
 						</label>
 						<label class="btn btn-primary">
-							<input type="radio" name="dosdos" value="2"> Programas de las asignaturas
+							<input type="checkbox" autocomplete="off" name="dosdos[]" value="2"> Programas de las asignaturas
 						</label>
 						<label class="btn btn-primary">
-							<input type="radio" name="dosdos" value="3"> Metodologías de enseñanza
+							<input type="checkbox" autocomplete="off" name="dosdos[]" value="3"> Metodologías de enseñanza
 						</label>
 						<label id="dosdosN" class="btn btn-primary">
-							<input type="radio" name="dosdos" value="5">No hubo
+							<input type="checkbox" autocomplete="off" name="dosdos[]" value="5">No hubo
 						</label>
 						<label id="dosdosC" class="btn btn-primary">
-							<input type="radio" name="dosdos" value="4">Otro
+							<input type="checkbox" autocomplete="off" name="dosdos[]" value="4">Otro
 						</label>
 						<div class="col-sm-4 col-xs-6">
 							<input style="display:none" id="dosdosotro" name="dosdosotro" class="form-control" type="text" placeholder="Aquí el otro valor">

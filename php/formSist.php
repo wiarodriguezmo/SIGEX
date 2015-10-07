@@ -24,21 +24,40 @@ $nombrePart = $_POST['nombrePart'];
 $fecha = $_POST['fecha'];
 $edadn = $_POST['edadn'];
 $lugarn = $_POST['lugarn'];
-
-$unouno = $_POST['unouno'];
+$unouno = "";
+if(!(empty($_POST['unouno']))){
+    foreach($_POST['unouno'] as $uuno){
+        $unouno .= $uuno.",";
+    }
+}
 $unounootro = $_POST['unounootro'];
 $unodos = $_POST['unodos'];
-$unotres = $_POST['unotres'];
+$unotres = "";
+if(!(empty($_POST['unotres']))){
+    foreach($_POST['unotres'] as $utres){
+        $unotres .= $utres.",";
+    }
+}
 $unotresotro = $_POST['unotresotro'];
 $unocuatro = $_POST['unocuatro'];
 $unocinco = $_POST['unocinco'];
 $unocincoW = $_POST['unocincoW'];
-$unoseis = $_POST['unoseis'];
+$unoseis = "";
+if(!(empty($_POST['unoseis']))){
+    foreach($_POST['unoseis'] as $useis){
+        $unoseis .= $useis.",";
+    }
+}
 $unoseisotro = $_POST['unoseisotro'];
 $unoseisuno = $_POST['unoseisuno'];
 
 $dosuno = $_POST['dosuno'];
-$dosdos = $_POST['dosdos'];
+$dosdos =  "";
+if(!(empty($_POST['dosdos']))){
+    foreach($_POST['dosdos'] as $ddos){
+        $dosdos .= $ddos.",";
+    }
+}
 $dosdosotro = $_POST['dosdosotro'];
 $dostres = $_POST['dostres'];
 $doscuatro = $_POST['doscuatro'];

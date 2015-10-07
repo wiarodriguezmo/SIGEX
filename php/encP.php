@@ -27,7 +27,14 @@ $lugarn = $_POST['lugarn'];
 $vinculado = $_POST['vinculado'];
 $ceroCuatro = $_POST['ceroCuatro'];
 $ceroCuatroOtro = $_POST['ceroCuatroOtro'];
-$unouno = $_POST['unouno'];
+
+$unouno = "";
+if(!(empty($_POST['unouno']))){
+    foreach($_POST['unouno'] as $tema){
+        $unouno .= $tema.",";
+    }
+}
+
 $unounootro = $_POST['unounootro'];
 $unodos = $_POST['unodos'];
 $unotres = $_POST['unotres'];
@@ -60,7 +67,7 @@ $participante = $rs['idPersona'];
 $sql = "INSERT INTO EncParticipantes(`0.3`, `0.4`, `0.4Otro`, `1.1`, `1.1Otro`, `1.2`, `1.3`, `1.4`, `1.5`, `1.6`, `1.7`, `2.1`, `2.2`, `2.3`, `2.4`, `2.5`, `2.6`, `2.7`, `participante`, `proy`) VALUES ('".$vinculado."', '". $ceroCuatro ."', '".$ceroCuatroOtro."', '".$unouno."', '".$unounootro."', '".$unodos."', '".$unotres."',  '".$unocuatro."', '".$unocinco."', '".$unoseis."', '".$unosiete."', '".$dosuno."', '".$dosdos."', '".$dostres."', '".$doscuatro."', '".$doscinco."', '".$dosseis."', '".$dossiete."', '".$participante."', '".$proyecto."')";
 
 if ($conn->query($sql) === TRUE) {
-	header("Location: ../resp/exitoso.php?hizo=Encuesta a Participantes");
+	header("Location: ../resp/exitoso.php?hizo=Encuesta a Participantess" .$unouno);
 	die();
     echo "New record created successfully".$sede;
 } else {
