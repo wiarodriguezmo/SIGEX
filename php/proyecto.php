@@ -31,7 +31,7 @@ $fecha = date('Y/m/d');
 $modalidad = $_POST['modalidad'];
 
 
-$sql = "INSERT INTO Proyecto VALUES ('".$name."','".$facultad."','".$sede."','".$region."','".$fecha."','".$modalidad."')";
+$sql = "INSERT INTO Proyecto VALUES (NULL,'".$name."','".$facultad."','".$sede."','".$region."','".$fecha."','".$modalidad."')";
 
 if ($conn->query($sql) === TRUE) {
 	header("Location: ../resp/exitoso.php?hizo=proyecto");

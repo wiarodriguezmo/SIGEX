@@ -22,12 +22,9 @@ $result = $conn->query("SELECT nombre, facultad, sede FROM Proyecto WHERE nombre
 $outp = "";
 while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
     if ($outp != "") {$outp .= ",";}
-    //$outp .= "{nombre: '"  . $rs["nombre"] . "'}";
 
     $outp .= '{"nombre":"'. $rs["nombre"].'","descrip":" Sede: '.$rs["sede"].' - Facultad: '.$rs["facultad"].'"}';
-    //
-    // {name: 'Chile'},
-    // {name: 'China'},
+
 }
 $outp ='{"records":['.$outp.']}';
 $conn->close();

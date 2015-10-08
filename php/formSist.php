@@ -19,7 +19,7 @@ if (!$conn->set_charset("utf8")) {
     exit();
 }
 
-$proyecto = $_POST['proyecto'];
+$nombreProy = $_POST['proyecto'];
 $nombrePart = $_POST['nombrePart'];
 $fecha = $_POST['fecha'];
 $edadn = $_POST['edadn'];
@@ -79,7 +79,7 @@ $tresoncew = $_POST['tresonceW'];
 
 if($fecha.$edadn.$lugarn != ""){
   if ($edadn == "") {
-    $edadn = 55; //TEMPORAL - La idea es que haga el cálculo automático
+    $edadn = date('Y/m/d') - $fecha;
   }
   $sqlP = "INSERT INTO Persona( `nombre`, `fechaNac`, `edad`, `lugarNac`) VALUES ('".$nombrePart."', '". $fecha ."', '".$edadn."', '".$lugarn."')";
   $conn->query($sqlP);
@@ -88,6 +88,12 @@ $sqlP = "SELECT idPersona FROM Persona WHERE nombre LIKE '".$nombrePart. "%'";
 $result = $conn->query($sqlP);
 $rs = $result->fetch_array(MYSQLI_ASSOC);
 $participante = $rs['idPersona'];
+
+$sqlP = "SELECT idProyecto FROM Proyecto WHERE nombre LIKE '".$nombreProy. "'";
+$result = $conn->query($sqlP);
+$rs = $result->fetch_array(MYSQLI_ASSOC);
+$proyecto = $rs['idProyecto'];
+
 
 $sql = "INSERT INTO FormSistemat(`1.1`, `1.1Otro`, `1.2`, `1.3`, `1.3Otro`, `1.4`, `1.5`, `1.5why`, `1.6`, `1.6Otro`, `1.6.1`, `2.1`, `2.2`, `2.2Otro`, `2.3`, `2.4`, `2.5`, `2.6`, `3.1`, `3.2`, `3.3`, `3.4`, `3.5`, `3.6`, `3.7`, `3.8`, `3.9`, `3.10`, `3.11`, `3.11why`, `director`, `proyecto`) VALUES ('".$unouno."','".$unounootro."','".$unodos."','".$unotres."','".$unotresotro."','".$unocuatro."','".$unocinco."','".$unocincoW."','".$unoseis."','".$unoseisotro."','".$unoseisuno."','".$dosuno."', '". $dosdos ."', '". $dosdosotro ."', '".$dostres."', '".$doscuatro."','".$doscinco."','".$dosseis."','".$tresuno."','".$tresdos."','".$trestres."','".$trescuatro."','".$trescinco."','".$tresseis."','".$tressiete."','".$tresocho."','".$tresnueve."','".$tresdiez."','".$tresonce."','".$tresoncew."','".$participante."','".$proyecto."')";
 

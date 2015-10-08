@@ -19,7 +19,7 @@ if (!$conn->set_charset("utf8")) {
     exit();
 }
 
-$proyecto = $_POST['proyecto'];
+$nombreProy = $_POST['proyecto'];
 $nombrePart = $_POST['nombrePart'];
 $fecha = $_POST['fecha'];
 $edadn = $_POST['edadn'];
@@ -46,7 +46,7 @@ $cuatrotres = $_POST['cuatrotres'];
 
 if($fecha.$edadn.$lugarn != ""){
   if ($edadn == "") {
-    $edadn = 55; //TEMPORAL - La idea es que haga el cálculo automático
+    $edadn = date('Y/m/d') - $fecha ;
   }
   $sqlP = "INSERT INTO Persona( `nombre`, `fechaNac`, `edad`, `lugarNac`) VALUES ('".$nombrePart."', '". $fecha ."', '".$edadn."', '".$lugarn."')";
   $conn->query($sqlP);
@@ -55,6 +55,11 @@ $sqlP = "SELECT idPersona FROM Persona WHERE nombre LIKE '".$nombrePart. "%'";
 $result = $conn->query($sqlP);
 $rs = $result->fetch_array(MYSQLI_ASSOC);
 $participante = $rs['idPersona'];
+
+$sqlP = "SELECT idProyecto FROM Proyecto WHERE nombre LIKE '".$nombreProy. "'";
+$result = $conn->query($sqlP);
+$rs = $result->fetch_array(MYSQLI_ASSOC);
+$proyecto = $rs['idProyecto'];
 
 $sql = "INSERT INTO EncUsuarios(`0.3`, `0.4`, `0.4Otro`, `1.1`, `1.1Otro`, `1.2`, `1.2W`, `2.1`, `2.2`, `3.1`, `3.2`, `3.3`, `4.1`, `4.2`, `4.3`, `usuario`, `proyecto`) VALUES ('".$vinculado."','".$ceroCuatro."','".$ceroCuatroOtro."','".$unouno."','".$unounootro."','".$unodos."','".$unodosW."','".$dosuno."','".$dosdos."','".$tresuno."','".$tresdos."','".$trestres."', '". $cuatrouno ."', '".$cuatrodos."', '".$cuatrotres."','".$participante."','".$proyecto."')";
 

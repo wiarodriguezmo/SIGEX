@@ -19,7 +19,7 @@ if (!$conn->set_charset("utf8")) {
     exit();
 }
 
-$proyecto = $_POST['proyecto'];
+$nombreProy = $_POST['proyecto'];
 $nombrePart = $_POST['nombrePart'];
 $fecha = $_POST['fecha'];
 $edadn = $_POST['edadn'];
@@ -53,7 +53,7 @@ $dossiete = $_POST['dossiete'];
 
 if($fecha.$edadn.$lugarn != ""){
   if ($edadn == "") {
-    $edadn = 55; //TEMPORAL - La idea es que haga el cálculo automático
+    $edadn = date('Y/m/d') - $fecha ;
   }
   $sqlP = "INSERT INTO Persona( `nombre`, `fechaNac`, `edad`, `lugarNac`) VALUES ('".$nombrePart."', '". $fecha ."', '".$edadn."', '".$lugarn."')";
   $conn->query($sqlP);
@@ -64,10 +64,15 @@ $rs = $result->fetch_array(MYSQLI_ASSOC);
 $participante = $rs['idPersona'];
 
 
+$sqlP = "SELECT idProyecto FROM Proyecto WHERE nombre LIKE '".$nombreProy. "'";
+$result = $conn->query($sqlP);
+$rs = $result->fetch_array(MYSQLI_ASSOC);
+$proyecto = $rs['idProyecto'];
+
 $sql = "INSERT INTO EncParticipantes(`0.3`, `0.4`, `0.4Otro`, `1.1`, `1.1Otro`, `1.2`, `1.3`, `1.4`, `1.5`, `1.6`, `1.7`, `2.1`, `2.2`, `2.3`, `2.4`, `2.5`, `2.6`, `2.7`, `participante`, `proy`) VALUES ('".$vinculado."', '". $ceroCuatro ."', '".$ceroCuatroOtro."', '".$unouno."', '".$unounootro."', '".$unodos."', '".$unotres."',  '".$unocuatro."', '".$unocinco."', '".$unoseis."', '".$unosiete."', '".$dosuno."', '".$dosdos."', '".$dostres."', '".$doscuatro."', '".$doscinco."', '".$dosseis."', '".$dossiete."', '".$participante."', '".$proyecto."')";
 
 if ($conn->query($sql) === TRUE) {
-	header("Location: ../resp/exitoso.php?hizo=Encuesta a Participantess" .$unouno);
+	header("Location: ../resp/exitoso.php?hizo=Encuesta a Participantes");
 	die();
     echo "New record created successfully".$sede;
 } else {
