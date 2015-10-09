@@ -43,7 +43,7 @@
 
 		<div class="container-fluid" id="formulario" ng-controller="formulario2">
 			<h1>{{ mensaje }}</h1>
-			<form action="php/encP.php" method="post" name="formul" class="form-horizontal" novalidate>
+			<form action="php/encP.php" method="post" name="encPForm" class="form-horizontal" novalidate>
 
 				<div class="form-group form-group-lg">
 					<label class="col-sm-3 control-label">Proyecto<label class="obligatorio"> *</label></label>
@@ -66,7 +66,7 @@
 					</div>
 				</div>
 
-			  <div class="form-group form-group-lg">
+			  <div class="form-group form-group-lg" ng-class="{ 'has-error' : encPForm.nombrePart.$invalid }">
 					<label class="col-sm-3 control-label" for="formGroupInputLarge">Participante<label class="obligatorio"> *</label></label>
 					<div class="row">
 						<div class="col-xs-3">
@@ -75,7 +75,7 @@
 						<div ng-show="exist[0].existe=='NO'" class="col-xs-2">
 						  <input class="form-control" ng-model="dt"  name="fecha" type="date" ng-disabled="!(edadn==null || edadn=='')" placeholder="Fecha nacimiento" ng-click="open($event)" >
 
-							<input class="dropdown-menu dropdown-menu-right" type="hidden" datepicker-popup="yyyy-MM-dd" ng-model="dt" is-open="opened" ng-required="true" close-text="Close" />
+							<input class="dropdown-menu dropdown-menu-right" type="hidden" datepicker-popup="yyyy-MM-dd" ng-model="dt" is-open="opened" close-text="Close" />
 							<span class="input-group-btn">
 								<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 							</span>
@@ -381,7 +381,7 @@
 						<label class="obligatorio"> * </label> son obligatorios</label>
 				  </div>
 				</div>
-				<button type="submit" ng-disable="formul.$invalid" class="btn btn-primary btn-lg">Enviar</button>
+				<button type="submit" ng-disabled="encPForm.$invalid" class="btn btn-primary btn-lg">Enviar</button>
 			</form>
 		</div>
 

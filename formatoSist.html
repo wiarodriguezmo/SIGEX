@@ -65,7 +65,7 @@
 		<div class="container-fluid" id="formulario" ng-controller="formulario2">
 			<h1>{{ mensaje3 }}</h1>
 
-			<form action="php/formSist.php" method="post" name="formul" class="form-horizontal" novalidate>
+			<form action="php/formSist.php" method="post" class="form-horizontal" name="formForm" novalidate>
 
 				<div class="form-group form-group-lg">
 					<label class="col-sm-3 control-label">Proyecto<label class="obligatorio"> *</label></label>
@@ -80,6 +80,7 @@
 							titlefield="nombre"
 							descriptionfield="descrip"
 							inputclass="form-control form-control-small" />
+
 						</div>
 						<div class="" ng-show="s">
 							Has seleccionado: <i><b>{{s.originalObject.nombre}}</b></i>
@@ -97,7 +98,7 @@
 						<div ng-show="exist[0].existe=='NO'" class="col-xs-2">
 						  <input class="form-control" ng-model="dt"  name="fecha" type="date" ng-disabled="!(edadn==null || edadn=='')" placeholder="Fecha nacimiento" ng-click="open($event)" >
 
-							<input class="dropdown-menu dropdown-menu-right" type="hidden" datepicker-popup="yyyy-MM-dd" ng-model="dt" is-open="opened" ng-required="true" close-text="Close" />
+							<input class="dropdown-menu dropdown-menu-right" type="hidden" datepicker-popup="yyyy-MM-dd" ng-model="dt" is-open="opened" close-text="Close" />
 							<span class="input-group-btn">
 								<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
 							</span>
@@ -137,10 +138,10 @@
 					</div>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group" ng-class="{ 'has-error' : formForm.unodos.$invalid }">
 					<label class="col-sm-3 control-label" >¿Cuál es el objetivo general del proyecto?:<label class="obligatorio"> *</label></label>
 					<div class="col-sm-8">
-				    <textarea placeholder="Escriba el objetivo" name="unodos" rows="4" class="form-control"></textarea>
+				    <textarea placeholder="Escriba el objetivo" name="unodos" ng-model="unodos" rows="4" class="form-control" required></textarea>
 					</div>
 				</div>
 
@@ -177,14 +178,14 @@
 					</div>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group" ng-class="{ 'has-error' : formForm.unocuatro.$invalid }">
 					<label class="col-sm-3 control-label" > Teniendo en cuenta la respuesta anterior ¿con qué objetivos específicos se relaciona?:<label class="obligatorio"> *</label></label>
 					<div class="col-sm-8">
-				    <textarea placeholder="Escriba los objetivos" name="unocuatro" rows="4" class="form-control"></textarea>
+				    <textarea placeholder="Escriba los objetivos" name="unocuatro" ng-model="unocuatro" rows="4" class="form-control" required></textarea>
 					</div>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group"  ng-class="{ 'has-error' : formForm.unocincoW.$invalid }">
 					<label class="col-sm-3 control-label" >¿El proyecto de extensión estuvo relacionado explícitamente con el Plan Estratégico de Extensión de la Sede o Facultad a la que pertenece el proyecto?:<label class="obligatorio"> *</label></label>
 					<div class="btn-group col-sm-8" data-toggle="buttons">
 						<label class="btn btn-primary">
@@ -194,12 +195,12 @@
 							<input type="radio" name="unocinco" value="0"> No
 						</label>
 						<div class="col-sm-8">
-					    <textarea placeholder="¿Por qué?" name="unocincoW" rows="2" class="form-control"></textarea>
+					    <textarea placeholder="¿Por qué?" name="unocincoW" ng-model="unocincoW" rows="2" class="form-control" required></textarea>
 						</div>
 					</div>
 				</div>
 
-				<div class="form-group">
+				<div class="form-group" ng-class="{ 'has-error' : formForm.unoseisuno.$invalid }">
 					<label class="col-sm-3 control-label" > ¿El proyecto de extensión estuvo  relacionado con propósitos y metas previstas en algunos de los siguientes planes?:<label class="obligatorio"> *</label></label>
 					<div class="btn-group col-sm-8" data-toggle="buttons">
 						<label class="btn btn-primary">
@@ -222,16 +223,16 @@
 						</div>
 					</div>
 					<div style="margin-top:5px" class="col-sm-8">
-						<textarea placeholder="Por favor, justifique su respuesta" name="unoseisuno" rows="2" class="form-control"></textarea>
+						<textarea placeholder="Por favor, justifique su respuesta" name="unoseisuno" ng-model="unoseisuno" rows="2" class="form-control" required></textarea>
 					</div>
 				</div>
 
 				<h1>Aportes académicos del proyecto.</h1>
 
-				<div class="form-group">
+				<div class="form-group" ng-class="{ 'has-error' : formForm.dosuno.$invalid }">
 					<label class="col-sm-3 control-label" >¿Qué aportes al conocimiento produjo la ejecución del proyecto?:<label class="obligatorio"> *</label></label>
 					<div class="col-sm-8">
-						<textarea placeholder="Escriba acá los aportes" name="dosuno" rows="4" class="form-control"></textarea>
+						<textarea placeholder="Escriba acá los aportes" name="dosuno" ng-model="dosuno" rows="4" class="form-control" required></textarea>
 					</div>
 				</div>
 
@@ -294,139 +295,134 @@
 					</div>
 				</div>
 
-		<h1>Incidencia</h1>
+				<h1>Incidencia</h1>
 
-		<div class="form-group">
-			<label class="col-sm-3 control-label" >¿El proyecto contribuyó a la formulación, evaluación o ejecución de las políticas públicas?:<label class="obligatorio"> *</label></label>
-			<div class="btn-group col-sm-8" data-toggle="buttons">
-				<label id="tresunoS" class="btn btn-primary">
-					<input type="radio" name="tresuno" value="1"> Sí
-				</label>
-				<label id="tresunoN" class="btn btn-primary">
-					<input type="radio" name="tresuno" value="0"> No
-				</label>
-			</div>
-		</div>
-
-		<div id="block3uno">
-			<div class="form-group">
-				<label class="col-sm-3 control-label">¿A cuál política?:<label class="obligatorio"> *</label></label>
-				<div class="col-sm-8">
-					<textarea placeholder="Escriba acá su respuesta" name="tresdos" rows="1" class="form-control"></textarea>
+				<div class="form-group">
+					<label class="col-sm-3 control-label" >¿El proyecto contribuyó a la formulación, evaluación o ejecución de las políticas públicas?:<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label id="tresunoS" class="btn btn-primary">
+							<input type="radio" name="tresuno" value="1"> Sí
+						</label>
+						<label id="tresunoN" class="btn btn-primary">
+							<input type="radio" name="tresuno" value="0"> No
+						</label>
+					</div>
 				</div>
-			</div>
 
-			<div class="form-group">
-				<label class="col-sm-3 control-label">¿De qué forma?:<label class="obligatorio"> *</label></label>
-				<div class="col-sm-8">
-					<textarea placeholder="Escriba acá su respuesta" name="trestres" rows="3" class="form-control"></textarea>
+				<div id="block3uno">
+					<div class="form-group">
+						<label class="col-sm-3 control-label">¿A cuál política?:<label class="obligatorio"> *</label></label>
+						<div class="col-sm-8">
+							<textarea placeholder="Escriba acá su respuesta" name="tresdos" rows="1" class="form-control"></textarea>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-3 control-label">¿De qué forma?:<label class="obligatorio"> *</label></label>
+						<div class="col-sm-8">
+							<textarea placeholder="Escriba acá su respuesta" name="trestres" rows="3" class="form-control"></textarea>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
 
-		<div class="form-group">
-			<label class="col-sm-3 control-label" >¿El proyecto realizó una línea base de caracterización?:<label class="obligatorio"> *</label></label>
-			<div class="btn-group col-sm-8" data-toggle="buttons">
-				<label id="trescuatroS" class="btn btn-primary">
-					<input type="radio" name="trescuatro" value="1"> Sí
-				</label>
-				<label id="trescuatroN" class="btn btn-primary">
-					<input type="radio" name="trescuatro" value="0"> No
-				</label>
-			</div>
-		</div>
-
-		<div id="trescinco" class="form-group">
-			<label class="col-sm-3 control-label" >¿Esta línea estableció la situación de partida en materia de Derechos Humanos?:<label class="obligatorio"> *</label></label>
-			<div class="btn-group col-sm-8" data-toggle="buttons">
-				<label class="btn btn-primary">
-					<input type="radio" name="trescinco" value="1"> Sí
-				</label>
-				<label class="btn btn-primary">
-					<input type="radio" name="trescinco" value="0"> No
-				</label>
-			</div>
-		</div>
-
-		<div class="form-group">
-			<label class="col-sm-3 control-label" >¿El proyecto contribuyó a la promoción, garantía o restitución de Derechos Humanos?:<label class="obligatorio"> *</label></label>
-			<div class="btn-group col-sm-8" data-toggle="buttons">
-				<label id="tresseisS" class="btn btn-primary">
-					<input type="radio" name="tresseis" value="1"> Sí
-				</label>
-				<label id="tresseisN" class="btn btn-primary">
-					<input type="radio" name="tresseis" value="0"> No
-				</label>
-			</div>
-		</div>
-
-		<div id="tressiete" class="form-group">
-			<label class="col-sm-3 control-label">¿De qué forma?:<label class="obligatorio"> *</label></label>
-			<div class="col-sm-8">
-				<textarea placeholder="Escriba acá su respuesta" name="tressiete" rows="3" class="form-control"></textarea>
-			</div>
-		</div>
-
-		<div class="form-group">
-			<label class="col-sm-3 control-label" >¿El proyecto contribuyó a las decisiones corporativas o políticas de la institución y/o la empresa? :<label class="obligatorio"> *</label></label>
-			<div class="btn-group col-sm-8" data-toggle="buttons">
-				<label id="tresochoS" class="btn btn-primary">
-					<input type="radio" name="tresocho" value="1"> Sí
-				</label>
-				<label id="tresochoN" class="btn btn-primary">
-					<input type="radio" name="tresocho" value="0"> No
-				</label>
-			</div>
-		</div>
-
-		<div id="block3dos">
-			<div class="form-group">
-				<label class="col-sm-3 control-label">¿A qué tipo de decisiones?:<label class="obligatorio"> *</label></label>
-				<div class="col-sm-8">
-					<textarea placeholder="Escriba acá su respuesta" name="tresnueve" rows="2" class="form-control"></textarea>
+				<div class="form-group">
+					<label class="col-sm-3 control-label" >¿El proyecto realizó una línea base de caracterización?:<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label id="trescuatroS" class="btn btn-primary">
+							<input type="radio" name="trescuatro" value="1"> Sí
+						</label>
+						<label id="trescuatroN" class="btn btn-primary">
+							<input type="radio" name="trescuatro" value="0"> No
+						</label>
+					</div>
 				</div>
-			</div>
 
-			<div class="form-group">
-				<label class="col-sm-3 control-label">¿De qué forma?:<label class="obligatorio"> *</label></label>
-				<div class="col-sm-8">
-					<textarea placeholder="Escriba acá su respuesta" name="tresdiez" rows="3" class="form-control"></textarea>
+				<div id="trescinco" class="form-group">
+					<label class="col-sm-3 control-label" >¿Esta línea estableció la situación de partida en materia de Derechos Humanos?:<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label class="btn btn-primary">
+							<input type="radio" name="trescinco" value="1"> Sí
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="trescinco" value="0"> No
+						</label>
+					</div>
 				</div>
-			</div>
-		</div>
 
-		<div class="form-group">
-			<label class="col-sm-3 control-label" >¿El proyecto aplicó algún tipo de instrumento para medir la percepción de satisfacción de los usuarios o beneficiarios?:<label class="obligatorio"> *</label></label>
-			<div class="btn-group col-sm-8" data-toggle="buttons">
-				<label class="btn btn-primary">
-					<input type="radio" name="tresonce" value="1"> Sí
-				</label>
-				<label class="btn btn-primary">
-					<input type="radio" name="tresonce" value="0"> No
-				</label>
-			</div>
-			<div class="col-sm-8">
-				<textarea placeholder="¿Por qué?" name="tresonceW" rows="1" class="form-control"></textarea>
-			</div>
-		</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label" >¿El proyecto contribuyó a la promoción, garantía o restitución de Derechos Humanos?:<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label id="tresseisS" class="btn btn-primary">
+							<input type="radio" name="tresseis" value="1"> Sí
+						</label>
+						<label id="tresseisN" class="btn btn-primary">
+							<input type="radio" name="tresseis" value="0"> No
+						</label>
+					</div>
+				</div>
+
+				<div id="tressiete" class="form-group">
+					<label class="col-sm-3 control-label">¿De qué forma?:<label class="obligatorio"> *</label></label>
+					<div class="col-sm-8">
+						<textarea placeholder="Escriba acá su respuesta" name="tressiete" rows="3" class="form-control"></textarea>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label" >¿El proyecto contribuyó a las decisiones corporativas o políticas de la institución y/o la empresa? :<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label id="tresochoS" class="btn btn-primary">
+							<input type="radio" name="tresocho" value="1"> Sí
+						</label>
+						<label id="tresochoN" class="btn btn-primary">
+							<input type="radio" name="tresocho" value="0"> No
+						</label>
+					</div>
+				</div>
+
+				<div id="block3dos">
+					<div class="form-group">
+						<label class="col-sm-3 control-label">¿A qué tipo de decisiones?:<label class="obligatorio"> *</label></label>
+						<div class="col-sm-8">
+							<textarea placeholder="Escriba acá su respuesta" name="tresnueve" rows="2" class="form-control"></textarea>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-3 control-label">¿De qué forma?:<label class="obligatorio"> *</label></label>
+						<div class="col-sm-8">
+							<textarea placeholder="Escriba acá su respuesta" name="tresdiez" rows="3" class="form-control"></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label" >¿El proyecto aplicó algún tipo de instrumento para medir la percepción de satisfacción de los usuarios o beneficiarios?:<label class="obligatorio"> *</label></label>
+					<div class="btn-group col-sm-8" data-toggle="buttons">
+						<label class="btn btn-primary">
+							<input type="radio" name="tresonce" value="1"> Sí
+						</label>
+						<label class="btn btn-primary">
+							<input type="radio" name="tresonce" value="0"> No
+						</label>
+					</div>
+					<div class="col-sm-8" ng-class="{ 'has-error' : formForm.tresonceW.$invalid }">
+						<textarea placeholder="¿Por qué?" name="tresonceW" ng-model="tresonceW" rows="1" class="form-control" required></textarea>
+					</div>
+				</div>
 
 			  <div class="form-group form-group-lg">
 					<label class="col-sm-2 control-label" for="formGroupInputLarge">Los campos marcados con
 					<label class="obligatorio"> * </label> son obligatorios</label>
 			  </div>
 
-			<button type="submit" ng-disable="formul.$invalid" class="btn btn-primary btn-lg">Enviar</button>
+				<button type="submit" class="btn btn-primary btn-lg" ng-disabled="formForm.$invalid">Enviar</button>
 			</form>
 		</div>
 
-		<script type="text/javascript" src="js/app.js"></script>
 		<script type="text/javascript" src="js/directives/angucomplete.js"></script>
 		<script type="text/javascript" src="js/controller.js"></script>
 
     <script src="js/bootstrap.js"></script>
-
-
-
-		</script>
 	</body>
 </html>
