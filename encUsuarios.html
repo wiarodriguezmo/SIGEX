@@ -2,6 +2,7 @@
 <html lang="es" ng-app="app2">
 	<head>
 		<meta charset="UTF-8" />
+		<link rel=icon href=images/logo.png sizes="16x16" type="image/png">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"  />
 		<link rel="stylesheet" type="text/css" href="css/angucomplete.css"/>
 		<link rel="stylesheet" type="text/css" href="css/style.css"  />
@@ -35,7 +36,7 @@
 			});
 		</script>
 	</head>
-	<body>
+	<body style="background-color: rgba(231, 199, 242, 1);">
 
 		<div class="container-fluid" id="formulario" ng-controller="formulario2">
 			<h1>{{ mensaje2 }}</h1>
@@ -59,7 +60,10 @@
 						<div class="" ng-show="s">
 							Has seleccionado: <i><b>{{s.originalObject.nombre}}</b></i>
 						</div>
-						<input style="display:none" name="proyecto" type="text" ng-model="s.originalObject.nombre" >
+						<div style="color: red" class="" ng-show="!s">
+							Por favor escoja un item del autocompletar (Escriba una palabra clave y espere las opciones)
+						</div>
+						<input style="display:none" name="proyecto" type="text" ng-model="s.originalObject.nombre" required>
 					</div>
 				</div>
 
