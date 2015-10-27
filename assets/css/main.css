@@ -1,6 +1,6 @@
 @import url("font-awesome.min.css");
 @import url("http://fonts.googleapis.com/css?family=Raleway:400,400italic,700,800");
-
+@import url("https://fonts.googleapis.com/css?family=Dancing+Script:700");
 /*
 	Highlights by HTML5 UP
 	html5up.net | @n33co
@@ -8,6 +8,58 @@
 */
 
 /* Reset */
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+    background-color: #fed7d8;
+}
+
+#title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.4em;
+}
+
+.control-label{
+	 text-align: left !important;
+	 margin-left: 5px;
+ }
+
+ /* Vamos a definir una barra separadora con el estilo de propuesto
+  * por: Tomas Theunissen combinado con el de Harry Roberts
+  *
+  * Para mayor información: http://css-tricks.com/examples/hrs/
+  * */
+ hr.separador_post {
+  height: 30px;
+  border-style: solid;
+  border-color: #BFBFBF;
+  border-width: 2px 0 0 0;
+  border-radius: 20px;
+  text-align: center;
+ }
+
+ hr.separador_post:before {
+     display: block;
+     content: "";
+     height: 30px;
+     margin-top: -31px;
+     border-style: solid;
+     border-color: black;
+     border-width: 0 0 1px 0;
+     -webkit-border-radius:20px;
+        -moz-border-radius:20px;
+             border-radius:20px;
+ }
+
+ hr.separador_post:after {
+     content: '§';
+     color: #DFAF1F;
+     display: inline-block;
+     position: relative;
+     top: -0.6em;
+     font-size: 1.5em;
+     padding: 0 0.25em;
+		 background: #F6F8F8;
+ }
 
 	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
 		margin: 0;
@@ -16,6 +68,7 @@
 		font-size: 100%;
 		font: inherit;
 		vertical-align: baseline;
+		background: none;
 	}
 
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -2466,10 +2519,10 @@
 		border-radius: 0;
 		border: 0;
 		box-shadow: inset 0 0 0 2px #dddddd;
-		color: #61686b !important;
+		color: #61686b;
 		cursor: pointer;
 		display: inline-block;
-		font-weight: 700;
+		font-weight: 700 !important;
 		height: 3em;
 		letter-spacing: 0.05em;
 		line-height: 3.15em;
@@ -2486,7 +2539,8 @@
 		button:hover,
 		.button:hover {
 			background-color: rgba(144, 144, 144, 0.075);
-			color: #61686b !important;
+			color: #61686b;
+			font-weight: 800 !important;
 		}
 
 		input[type="submit"]:active,
@@ -2822,7 +2876,7 @@
 		/* Main */
 
 			.main .image.primary {
-				display: block;
+				display: none;
 				margin: 0 0 4em 0;
 			}
 

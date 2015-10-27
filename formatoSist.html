@@ -1,432 +1,483 @@
-<!DOCTYPE  html>
-<html lang="es" ng-app="app2">
+<html ng-app="app2">
 	<head>
-		<meta charset="UTF-8" />
-		<link rel=icon href=images/logo.png sizes="16x16" type="image/png">
+		<title>Proyecto OBEX</title>
+		<meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"  />
+		<link rel=icon href=images/logo.png sizes="16x16" type="image/png">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel=icon href=images/logo.png sizes="16x16" type="image/png">
+		<link rel="stylesheet" href="assets/css/main.css" />
+
 		<link rel="stylesheet" type="text/css" href="css/angucomplete.css"/>
-		<link rel="stylesheet" type="text/css" href="css/style.css"  />
 		<script type="text/javascript" src="js/angular.min.js"></script>
 		<script src="js/ui-bootstrap-tpls-0.12.0.js"></script>
 		<script src="js/angular-locale_es-co.js"></script>
 		<script src="js/jquery.js"></script>
-
 		<script type="text/javascript">
-		  $(document).ready(function(){
-		      $("#unounoC").click(function(){
-		        $("#unounootro").show(800);
-		      });
-					$("#unotresC").click(function(){
-						$("#unotresotro").show(800);
-					});
-					$("#unoseisC").click(function(){
-						$("#unoseisotro").show(800);
-					});
-					$("#dosdosC").click(function(){
-						$("#dosdosotro").show(800);
-					});
-					$("#dosdosN").click(function(){
-					    $("#dostres").hide(800);
-					});
-					$("#doscuatroN").click(function(){
-					    $("#block2").hide(700);
-					});
-					$("#doscuatroS").click(function(){
-							$("#block2").show(700);
-					});
-					$("#tresunoN").click(function(){
-					    $("#block3uno").hide(700);
-					});
-					$("#tresunoS").click(function(){
-							$("#block3uno").show(700);
-					});
-					$("#trescuatroN").click(function(){
-					    $("#trescinco").hide(700);
-					});
-					$("#trescuatroS").click(function(){
-							$("#trescinco").show(700);
-					});
-					$("#tresseisN").click(function(){
-					    $("#tressiete").hide(700);
-					});
-					$("#tresseisS").click(function(){
-							$("#tressiete").show(700);
-					});
-					$("#tresochoN").click(function(){
-					    $("#block3dos").hide(700);
-					});
-					$("#tresochoS").click(function(){
-							$("#block3dos").show(700);
-					});
-		  });
+			$(document).ready(function(){
+				$("#unounoC").click(function(){
+					$("#unounootro").show(800);
+				});
+				$("#unotresC").click(function(){
+					$("#unotresotro").show(800);
+				});
+				$("#unoseisC").click(function(){
+					$("#unoseisotro").show(800);
+				});
+				$("#dosdosC").click(function(){
+					$("#dosdosotro").show(800);
+				});
+				$("#dosdosN").click(function(){
+						$("#dostres").hide(800);
+				});
+				$("#doscuatroN").click(function(){
+						$("#block2").hide(700);
+				});
+				$("#doscuatroS").click(function(){
+						$("#block2").show(700);
+				});
+				$("#tresunoN").click(function(){
+						$("#block3uno").hide(700);
+				});
+				$("#tresunoS").click(function(){
+						$("#block3uno").show(700);
+				});
+				$("#trescuatroN").click(function(){
+						$("#trescinco").hide(700);
+				});
+				$("#trescuatroS").click(function(){
+						$("#trescinco").show(700);
+				});
+				$("#tresseisN").click(function(){
+						$("#tressiete").hide(700);
+				});
+				$("#tresseisS").click(function(){
+						$("#tressiete").show(700);
+				});
+				$("#tresochoN").click(function(){
+						$("#block3dos").hide(700);
+				});
+				$("#tresochoS").click(function(){
+						$("#block3dos").show(700);
+				});
+		});
 		</script >
-
 	</head>
-	<body style="background-color: rgba(182, 215, 233, 1)">
-		<div class="container-fluid" id="formulario" ng-controller="formulario2">
-			<h1>{{ mensaje3 }}</h1>
+	<body>
+			<section id="one" class="main special">
+				<div style="width: 45em;" class="container">
+					<span class="image fit primary"><img src="http://gabrielparradoconferencias.com/images/pic03.jpg" alt="" /></span>
+					<div class="content">
+						<div style="margin:-4em 0 2em 0; background: url('images/un.png') no-repeat center; height:170px" alt="Escudo Universidad Nacional de Colombia" /></div>
+						<header class="major">
+							<h2>Proyecto OBEX</h2>
+						</header>
+						<div class="container-fluid" id="formulario" ng-controller="formulario2">
+							<div style="margin-top:2em" class="row">
+								 <div class="col-md-6">
+										<div style="margin:-4em 0 2em 0; background: url('images/sistematizacion.png') no-repeat center; height:230px" alt="Escudo Universidad Nacional de Colombia" /></div>
+								 </div>
+								 <div class="col-md-6"><h1 style="font-size: 2em;" id="title">{{ mensaje3 }}</h1></div>
+							</div>
+							<form action="php/formSist.php" method="post" name="formForm" class="form-horizontal" novalidate>
 
-			<form action="php/formSist.php" method="post" class="form-horizontal" name="formForm" novalidate>
+								<div class="form-group form-group-lg">
+									<label class="col-md-6 control-label">Proyecto </label>
+								</div>
+								<div class="form-group form-group-lg">
+									<div class="col-md-12">
+										<div class="padded-row">
+											<angucomplete id="members" required
+											placeholder="Buscar por nombre del proyecto"
+											pause="400"
+											selectedobject="s"
+											url="php/consProy.php?proy="
+											datafield="records"
+											titlefield="nombre"
+											descriptionfield="descrip"
+											inputclass="form-control form-control-small" />
+										</div>
+										<div class="" ng-show="s">
+											Has seleccionado: <i><b>{{s.originalObject.nombre}}</b></i>
+										</div>
+										<div style="color: red" class="" ng-show="!s">
+											Por favor escoja un item del autocompletar (Escriba una palabra clave y espere las opciones)
+										</div>
+										<input style="display:none" name="proyecto" type="text" ng-model="s.originalObject.nombre" required>
+									</div>
+								</div>
 
-				<div class="form-group form-group-lg">
-					<label class="col-sm-3 control-label">Proyecto<label class="obligatorio"> *</label></label>
-					<div class="col-sm-8">
-						<div class="padded-row">
-							<angucomplete id="members" required
-							placeholder="Buscar por nombre del proyecto"
-							pause="400"
-							selectedobject="s"
-							url="php/consProy.php?proy="
-							datafield="records"
-							titlefield="nombre"
-							descriptionfield="descrip"
-							inputclass="form-control form-control-small" />
 
+							  <div class="form-group form-group-lg" ng-class="{ 'has-error' : formForm.nombrePart.$invalid }">
+									<label class="col-md-6 control-label">Participante </label>
+								</div>
+								<div class="form-group form-group-lg" ng-class="{ 'has-error' : formForm.nombrePart.$invalid }">
+									<div class="col-md-12">
+									  <input class="form-control" type="text" placeholder="Nombre del participante" name="nombrePart" ng-model="user" ng-change="existente()" required>
+									</div>
+									<div ng-show="exist[0].existe=='NO'" class="col-md-6">
+									  <input class="form-control" ng-model="dt"  name="fecha" type="date" ng-disabled="!(edadn==null || edadn=='')" placeholder="Fecha nacimiento" ng-click="open($event)" >
+										<input class="dropdown-menu dropdown-menu-right" type="hidden" datepicker-popup="yyyy-MM-dd" ng-model="dt" is-open="opened" close-text="Close" />
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+										</span>
+									</div>
+									<div class="col-md-6">
+										<input ng-show="exist[0].existe=='NO'" class="form-control" ng-model="edadn" ng-disabled="!(dt==null || dt=='')" type="text" placeholder="Edad (si desconoce fecha de nacimiento)" name="edad">
+									</div>
+									<div class="col-md-6">
+										<input ng-show="exist[0].existe=='NO'" class="form-control" ng-model="lugarn" type="text" placeholder="Lugar de nacimiento" name="lugarn">
+									</div>
+							  </div>
+
+								<div class="clear"></div><br>
+								<hr class='separador_post'/>
+
+								<h1>Parte 1: Pertinencia académica y social</h1><br>
+
+								<div class="form-group">
+									<label class="col-md-12 control-label" >1.1 ¿Con qué tipo de sector estableció  vínculos el proyecto de extensión a su cargo?: </label>
+								</div>
+								<div class="form-group">
+									<div class="btn-group col-md-12" data-toggle="buttons">
+										<label class="col-md-6 btn btn-primary">
+									    <input type="checkbox" autocomplete="off" name="unouno[]" value="1">Sector estatal
+									  </label>
+										<label class="col-md-6 btn btn-primary">
+									    <input type="checkbox" autocomplete="off" name="unouno[]" value="2"> Sector privado
+									  </label>
+										<label class="col-md-7 btn btn-primary">
+									    <input type="checkbox" autocomplete="off" name="unouno[]" value="3"> Sector social o comunitario
+									  </label>
+										<label class="col-md-5 btn btn-primary">
+									    <input type="checkbox" autocomplete="off" name="unouno[]" value="4"> ONG
+									  </label>
+										<label id="unounoC" class="col-md-4 btn btn-primary">
+											<input type="checkbox" autocomplete="off" name="unouno[]" value="5">Otro
+										</label>
+										<div class="col-sm-4 col-xs-6 col-md-7">
+											<input style="display:none" id="unounootro" name="unounootro" class="form-control" type="text" placeholder="Aquí el otro valor">
+										</div>
+									</div>
+								</div><br>
+
+								<div class="form-group" ng-class="{ 'has-error' : formForm.unodos.$invalid }">
+									<label class="col-md-12 control-label" >1.2 ¿Cuál es el objetivo general del proyecto?: </label>
+									<div class="col-md-12">
+										<textarea placeholder="Escriba el objetivo" name="unodos" ng-model="unodos" rows="4" class="form-control" required></textarea>
+									</div>
+								</div><br>
+
+								<div class="form-group">
+									<label class="col-md-12 control-label" >1.3 ¿Con qué plan de la Universidad Nacional se relaciona el proyecto?:</label>
+								</div>
+								<div class="form-group">
+									<div class="btn-group col-md-12" data-toggle="buttons">
+										<label class="col-md-6 btn btn-primary">
+											<input  type="checkbox" autocomplete="off" name="unotres[]" value="1"> Plan Global de Desarrollo de la UN.
+									  </label>
+										<label class="col-md-6 btn btn-primary">
+											<input type="checkbox" autocomplete="off" name="unotres[]" value="2"> Planes de sede
+									  </label>
+										<label class="col-md-6 btn btn-primary">
+											<input type="checkbox" autocomplete="off" name="unotres[]" value="3"> Planes de facultad
+									  </label>
+										<label class="col-md-6 btn btn-primary">
+											<input type="checkbox" autocomplete="off" name="unotres[]" value="4">Planes de institutos
+									  </label>
+										<label class="col-md-6 btn btn-primary">
+											<input type="checkbox" autocomplete="off" name="unotres[]" value="5">Líneas de desarrollo académico
+									  </label>
+										<label class="col-md-6 btn btn-primary">
+											<input type="checkbox" autocomplete="off" name="unotres[]" value="6">No se sabe
+									  </label>
+										<label class="col-md-6 btn btn-primary">
+											<input type="checkbox" autocomplete="off" name="unotres[]" value="7">Ninguno
+									  </label>
+										<label id="unotresC" class="col-md-6 btn btn-primary">
+											<input type="checkbox" autocomplete="off" name="unotres[]" value="8">Otro
+									  </label>
+										<div class="col-sm-4 col-xs-6 col-md-11">
+											<input style="display:none" id="unotresotro" name="unotresotro" class="form-control" type="text" placeholder="Aquí el otro valor">
+										</div>
+									</div>
+								</div><br>
+
+								<div class="form-group" ng-class="{ 'has-error' : formForm.unocuatro.$invalid }">
+									<label class="col-md-12 control-label" >1.4 Teniendo en cuenta la respuesta anterior ¿con qué objetivos específicos se relaciona?: </label>
+									<div class="col-md-12">
+										<textarea placeholder="Escriba los objetivos" name="unocuatro" ng-model="unocuatro" rows="4" class="form-control" required></textarea>
+									</div>
+								</div><br>
+
+								<div class="form-group"  ng-class="{ 'has-error' : formForm.unocincoW.$invalid }">
+									<label class="col-md-12 control-label" >1.5 ¿El proyecto de extensión estuvo relacionado explícitamente con el Plan Estratégico de Extensión de la Sede o Facultad a la que pertenece el proyecto?: </label>
+								</div>
+								<div class="form-group">
+									<div class="btn-group col-md-12 col-sm-12 col-xs-12" data-toggle="buttons">
+										<label class="btn btn-primary">
+											<input type="radio" name="unocinco" value="1"> Sí
+										</label>
+										<label class="btn btn-primary">
+											<input type="radio" name="unocinco" value="0"> No
+										</label>
+										<div class="col-md-10 col-sm-10 col-xs-10" ng-class="{ 'has-error' : formForm.unocincoW.$invalid }">
+											<textarea placeholder="¿Por qué?" name="unocincoW" ng-model="unocincoW" rows="2" class="form-control" required></textarea>
+										</div>
+									</div>
+								</div><br>
+
+								<div class="form-group" ng-class="{ 'has-error' : formForm.unoseisuno.$invalid }">
+									<label class="col-md-12 control-label" >1.6  ¿El proyecto de extensión estuvo  relacionado con propósitos y metas previstas en algunos de los siguientes planes?:</label>
+									<div class="btn-group col-md-12" data-toggle="buttons">
+										<label class="col-md-6 btn btn-primary">
+											<input type="checkbox" autocomplete="off" name="unoseis[]" value="1"> Plan Nacional de Desarrollo
+										</label>
+										<label class="col-md-6 btn btn-primary">
+											<input type="checkbox" autocomplete="off" name="unoseis[]" value="2"> Planes departamentales de desarrollo
+										</label>
+										<label class="col-md-6 btn btn-primary">
+											<input type="checkbox" autocomplete="off" name="unoseis[]" value="3"> Planes locales de desarrollo
+										</label>
+										<label class="col-md-6 btn btn-primary">
+											<input type="checkbox" autocomplete="off" name="unoseis[]" value="4">Ninguno de los anteriores
+										</label>
+										<label id="unoseisC" class="col-md-6 btn btn-primary">
+											<input type="checkbox" autocomplete="off" name="unoseis[]" value="5">Otro
+										</label>
+										<div class="col-sm-4 col-xs-6 col-md-6">
+											<input style="display:none" id="unoseisotro" name="unoseisotro" class="form-control" type="text" placeholder="Aquí el otro valor">
+										</div>
+									</div>
+									<div style="margin-top:5px" class="col-md-12">
+										<textarea placeholder="Por favor, justifique su respuesta" name="unoseisuno" ng-model="unoseisuno" rows="2" class="form-control" required></textarea>
+									</div>
+								</div>
+
+								<div class="clear"></div><br>
+								<hr class='separador_post'/>
+
+								<h1>Parte 2: Aportes académicos del proyecto.</h1><br>
+
+								<div class="form-group" ng-class="{ 'has-error' : formForm.dosuno.$invalid }">
+									<label class="col-md-12 control-label" >2.1¿Qué aportes al conocimiento produjo la ejecución del proyecto?:</label>
+									<div class="col-md-12">
+										<textarea placeholder="Escriba acá los aportes" name="dosuno" ng-model="dosuno" rows="4" class="form-control" required></textarea>
+									</div>
+								</div><br>
+
+								<div class="form-group">
+									<label class="col-md-12 control-label" >2.2 ¿Qué tipos de aporte a la docencia realizó el proyecto?:</label>
+								</div>
+								<div class="form-group">
+									<div class="btn-group col-md-12" data-toggle="buttons">
+										<label class="col-md-6 btn btn-primary">
+											<input type="checkbox" autocomplete="off" name="dosdos[]" value="1">Plan de estudios.
+										</label>
+										<label class="col-md-6 btn btn-primary">
+											<input type="checkbox" autocomplete="off" name="dosdos[]" value="2"> Programas de las asignaturas
+										</label>
+										<label class="col-md-6 btn btn-primary">
+											<input type="checkbox" autocomplete="off" name="dosdos[]" value="3"> Metodologías de enseñanza
+										</label>
+										<label id="dosdosN" class="col-md-6 btn btn-primary">
+											<input type="checkbox" autocomplete="off" name="dosdos[]" value="5">No hubo
+										</label>
+										<label id="dosdosC" class="col-md-6 btn btn-primary">
+											<input type="checkbox" autocomplete="off" name="dosdos[]" value="4">Otro
+										</label>
+										<div class="col-sm-4 col-xs-6 col-md-6">
+											<input style="display:none" id="dosdosotro" name="dosdosotro" class="form-control" type="text" placeholder="Aquí el otro valor">
+										</div>
+									</div>
+								</div><br>
+
+								<div id="dostres" class="form-group">
+									<label class="col-md-12 control-label" >2.3 ¿Cuál fue su aporte en este tema?:</label>
+									<div class="col-md-12">
+										<textarea placeholder="Escriba acá los aportes" name="dostres" rows="4" class="form-control"></textarea>
+									</div><br>
+								</div>
+
+								<div class="form-group">
+									<label class="col-md-12 control-label" >2.4 ¿El proyecto produjo alguna innovación?:</label>
+								</div>
+								<div class="form-group">
+									<div class="btn-group col-md-12" data-toggle="buttons">
+										<label id="doscuatroS" class="btn btn-primary">
+											<input type="radio" name="doscuatro" value="1"> Sí
+										</label>
+										<label id="doscuatroN" class="btn btn-primary">
+											<input type="radio" name="doscuatro" value="0"> No
+										</label>
+									</div>
+								</div><br>
+
+								<div id="block2">
+									<div class="form-group">
+										<label class="col-md-12 control-label" >¿Qué aportes en términos de innovación (tecnológica, metodológica, instrumental, social, pedagógica, entre otras) produjo la ejecución del proyecto?:</label>
+									</div>
+									<div class="form-group">
+										<div class="col-md-12">
+											<textarea placeholder="Escriba acá los aportes" name="doscinco" rows="4" class="form-control"></textarea>
+										</div>
+									</div><br>
+
+									<div class="form-group">
+										<label class="col-md-12 control-label" >¿De qué manera estos aportes se incorporaron a líneas de investigación o al desarrollo académico de la Universidad?:</label>
+									</div>
+									<div class="form-group">
+										<div class="col-md-12">
+											<textarea placeholder="Escriba su respuesta acá" name="dosseis" rows="4" class="form-control"></textarea>
+										</div>
+									</div><br>
+								</div>
+
+
+								<div class="clear"></div><br>
+								<hr class='separador_post'/>
+
+								<h1>Parte 3: Incidencia.</h1><br>
+
+								<div class="form-group">
+									<label class="col-md-12 control-label" >3.1 ¿El proyecto contribuyó a la formulación, evaluación o ejecución de las políticas públicas?:</label>
+								</div>
+								<div class="form-group">
+									<div class="btn-group col-md-12" data-toggle="buttons">
+										<label id="tresunoS" class="btn btn-primary">
+											<input type="radio" name="tresuno" value="1"> Sí
+										</label>
+										<label id="tresunoN" class="btn btn-primary">
+											<input type="radio" name="tresuno" value="0"> No
+										</label>
+									</div>
+								</div><br>
+
+								<div id="block3uno">
+									<div class="form-group">
+										<label class="col-md-12 control-label" >3.2 ¿A cuál política?:</label>
+										<div class="col-md-12">
+											<textarea placeholder="Escriba acá su respuesta" name="tresdos" rows="1" class="form-control"></textarea>
+										</div>
+									</div><br>
+
+									<div class="form-group">
+										<label class="col-md-12 control-label" >3.3 ¿De qué forma?:</label>
+										<div class="col-md-12">
+											<textarea placeholder="Escriba acá su respuesta" name="trestres" rows="3" class="form-control"></textarea>
+										</div>
+									</div><br>
+								</div>
+
+								<div class="form-group">
+									<label class="col-md-12 control-label" >3.4¿El proyecto realizó una línea base de caracterización?:</label>
+									<div class="btn-group col-md-12" data-toggle="buttons">
+										<label id="trescuatroS" class="btn btn-primary">
+											<input type="radio" name="trescuatro" value="1"> Sí
+										</label>
+										<label id="trescuatroN" class="btn btn-primary">
+											<input type="radio" name="trescuatro" value="0"> No
+										</label>
+									</div>
+								</div><br>
+
+								<div id="trescinco" class="form-group">
+									<label class="col-md-12 control-label" >3.5¿Esta línea estableció la situación de partida en materia de Derechos Humanos?:</label>
+									<div class="btn-group col-md-12" data-toggle="buttons">
+										<label class="btn btn-primary">
+											<input type="radio" name="trescinco" value="1"> Sí
+										</label>
+										<label class="btn btn-primary">
+											<input type="radio" name="trescinco" value="0"> No
+										</label>
+									</div><br>
+								</div>
+
+								<div class="form-group">
+									<label class="col-md-12 control-label" >3.6 ¿El proyecto contribuyó a la promoción, garantía o restitución de Derechos Humanos?:</label>
+									<div class="btn-group col-md-12" data-toggle="buttons">
+										<label id="tresseisS" class="btn btn-primary">
+											<input type="radio" name="tresseis" value="1"> Sí
+										</label>
+										<label id="tresseisN" class="btn btn-primary">
+											<input type="radio" name="tresseis" value="0"> No
+										</label>
+									</div>
+								</div><br>
+
+								<div id="tressiete" class="form-group">
+									<label class="col-md-12 control-label" >3.7 ¿De qué forma?:</label>
+									<div class="col-md-12">
+										<textarea placeholder="Escriba acá su respuesta" name="tressiete" rows="3" class="form-control"></textarea>
+									</div><br>
+								</div>
+
+								<div class="form-group">
+									<label class="col-md-12 control-label" >3.8 ¿El proyecto contribuyó a las decisiones corporativas o políticas de la institución y/o la empresa? :</label>
+								</div>
+								<div class="form-group">
+									<div class="btn-group col-md-12" data-toggle="buttons">
+										<label id="tresochoS" class="btn btn-primary">
+											<input type="radio" name="tresocho" value="1"> Sí
+										</label>
+										<label id="tresochoN" class="btn btn-primary">
+											<input type="radio" name="tresocho" value="0"> No
+										</label>
+									</div>
+								</div><br>
+
+								<div id="block3dos">
+									<div class="form-group">
+										<label class="col-md-12 control-label" >3.9 ¿A qué tipo de decisiones?:</label>
+										<div class="col-md-12">
+											<textarea placeholder="Escriba acá su respuesta" name="tresnueve" rows="2" class="form-control"></textarea>
+										</div>
+									</div><br>
+
+									<div class="form-group">
+										<label class="col-md-12 control-label" >3.10 ¿De qué forma?:</label>
+										<div class="col-md-12">
+											<textarea placeholder="Escriba acá su respuesta" name="tresdiez" rows="3" class="form-control"></textarea>
+										</div>
+									</div><br>
+								</div>
+
+								<div class="form-group"  ng-class="{ 'has-error' : formForm.tresonceW.$invalid }">
+									<label class="col-md-12 control-label" >3.11 ¿El proyecto aplicó algún tipo de instrumento para medir la percepción de satisfacción de los usuarios o beneficiarios?: </label>
+								</div>
+								<div class="form-group">
+									<div class="btn-group col-md-12 col-sm-12 col-xs-12" data-toggle="buttons">
+										<label class="btn btn-primary">
+											<input type="radio" name="tresonce" value="1"> Sí
+										</label>
+										<label class="btn btn-primary">
+											<input type="radio" name="tresonce" value="0"> No
+										</label>
+										<div class="col-md-10 col-sm-10 col-xs-10" ng-class="{ 'has-error' : formForm.unocincoW.$invalid }">
+											<textarea placeholder="¿Por qué?" name="tresonceW" ng-model="tresonceW" rows="1" class="form-control" required></textarea>
+										</div>
+									</div>
+								</div><br>
+
+								<button style="color: white" type="submit" ng-disabled="formForm.$invalid" class="btn btn-primary btn-lg">Enviar</button>
+							</form>
 						</div>
-						<div class="" ng-show="s">
-							Has seleccionado: <i><b>{{s.originalObject.nombre}}</b></i>
-						</div>
-						<div style="color: red" class="" ng-show="!s">
-							Por favor escoja un item del autocompletar (Escriba una palabra clave y espere las opciones)
-						</div>
-						<input style="display:none" name="proyecto" type="text" ng-model="s.originalObject.nombre" required>
 					</div>
 				</div>
+			</section>
 
-			  <div class="form-group form-group-lg">
-					<label class="col-sm-3 control-label" for="formGroupInputLarge">Director<label class="obligatorio"> *</label></label>
-					<div class="row">
-						<div class="col-xs-3">
-						  <input class="form-control" type="text" placeholder="Nombre del participante" name="nombrePart" ng-model="user" ng-change="existente()" required>
-						</div>
-						<div ng-show="exist[0].existe=='NO'" class="col-xs-2">
-						  <input class="form-control" ng-model="dt"  name="fecha" type="date" ng-disabled="!(edadn==null || edadn=='')" placeholder="Fecha nacimiento" ng-click="open($event)" >
+			<script type="text/javascript" src="js/app.js"></script>
+			<script type="text/javascript" src="js/directives/angucomplete.js"></script>
+			<script type="text/javascript" src="js/controller.js"></script>
+			<script src="js/bootstrap.js"></script>
 
-							<input class="dropdown-menu dropdown-menu-right" type="hidden" datepicker-popup="yyyy-MM-dd" ng-model="dt" is-open="opened" close-text="Close" />
-							<span class="input-group-btn">
-								<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-							</span>
-						</div>
-						<div class="col-xs-2">
-							<input ng-show="exist[0].existe=='NO'" class="form-control" ng-model="edadn" ng-disabled="!(dt==null || dt=='')" type="text" placeholder="Edad (si desconoce fecha de nacimiento)" name="edad">
-						</div>
-						<div style="margin-left:26%" class="col-xs-3">
-							<input ng-show="exist[0].existe=='NO'" class="form-control" ng-model="lugarn" type="text" placeholder="Lugar de nacimiento" name="lugarn">
-						</div>
-					</div>
-			  </div>
-
-				<h1>Pertinencia académica y social</h1>
-
-				<div class="form-group">
-					<label class="col-sm-3 control-label" >¿Con qué tipo de sector estableció  vínculos el proyecto de extensión a su cargo?<label class="obligatorio"> *</label></label>
-					<div class="btn-group col-sm-8" data-toggle="buttons">
-						<label class="btn btn-primary">
-					    <input type="checkbox" autocomplete="off" name="unouno[]" value="1">Sector estatal
-					  </label>
-						<label class="btn btn-primary">
-					    <input type="checkbox" autocomplete="off" name="unouno[]" value="2"> Sector privado
-					  </label>
-						<label class="btn btn-primary">
-					    <input type="checkbox" autocomplete="off" name="unouno[]" value="3"> Sector social o comunitario
-					  </label>
-						<label class="btn btn-primary">
-					    <input type="checkbox" autocomplete="off" name="unouno[]" value="4"> ONG
-					  </label>
-						<label id="unounoC" class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" name="unouno[]" value="5">Otro
-						</label>
-						<div class="col-sm-4 col-xs-6">
-							<input style="display:none" id="unounootro" name="unounootro" class="form-control" type="text" placeholder="Aquí el otro valor">
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group" ng-class="{ 'has-error' : formForm.unodos.$invalid }">
-					<label class="col-sm-3 control-label" >¿Cuál es el objetivo general del proyecto?:<label class="obligatorio"> *</label></label>
-					<div class="col-sm-8">
-				    <textarea placeholder="Escriba el objetivo" name="unodos" ng-model="unodos" rows="4" class="form-control" required></textarea>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-sm-3 control-label" >¿Con qué plan de la Universidad Nacional se relaciona el proyecto?:<label class="obligatorio"> *</label></label>
-					<div class="btn-group col-sm-8" data-toggle="buttons">
-						<label class="btn btn-primary">
-							<input  type="checkbox" autocomplete="off" name="unotres[]" value="1"> Plan Global de Desarrollo de la UN.
-						</label>
-						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" name="unotres[]" value="2"> Planes de sede
-						</label>
-						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" name="unotres[]" value="3"> Planes de facultad
-						</label>
-						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" name="unotres[]" value="4">Planes de institutos
-						</label>
-						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" name="unotres[]" value="5">Líneas de desarrollo académico
-						</label>
-						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" name="unotres[]" value="6">No se sabe
-						</label>
-						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" name="unotres[]" value="7">Ninguno
-						</label>
-						<label id="unotresC" class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" name="unotres[]" value="8">Otro
-						</label>
-						<div class="col-sm-4 col-xs-6">
-							<input style="display:none" id="unotresotro" name="unotresotro" class="form-control" type="text" placeholder="Aquí el otro valor">
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group" ng-class="{ 'has-error' : formForm.unocuatro.$invalid }">
-					<label class="col-sm-3 control-label" > Teniendo en cuenta la respuesta anterior ¿con qué objetivos específicos se relaciona?:<label class="obligatorio"> *</label></label>
-					<div class="col-sm-8">
-				    <textarea placeholder="Escriba los objetivos" name="unocuatro" ng-model="unocuatro" rows="4" class="form-control" required></textarea>
-					</div>
-				</div>
-
-				<div class="form-group"  ng-class="{ 'has-error' : formForm.unocincoW.$invalid }">
-					<label class="col-sm-3 control-label" >¿El proyecto de extensión estuvo relacionado explícitamente con el Plan Estratégico de Extensión de la Sede o Facultad a la que pertenece el proyecto?:<label class="obligatorio"> *</label></label>
-					<div class="btn-group col-sm-8" data-toggle="buttons">
-						<label class="btn btn-primary">
-							<input type="radio" name="unocinco" value="1"> Sí
-						</label>
-						<label class="btn btn-primary">
-							<input type="radio" name="unocinco" value="0"> No
-						</label>
-						<div class="col-sm-8">
-					    <textarea placeholder="¿Por qué?" name="unocincoW" ng-model="unocincoW" rows="2" class="form-control" required></textarea>
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group" ng-class="{ 'has-error' : formForm.unoseisuno.$invalid }">
-					<label class="col-sm-3 control-label" > ¿El proyecto de extensión estuvo  relacionado con propósitos y metas previstas en algunos de los siguientes planes?:<label class="obligatorio"> *</label></label>
-					<div class="btn-group col-sm-8" data-toggle="buttons">
-						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" name="unoseis[]" value="1"> Plan Nacional de Desarrollo
-						</label>
-						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" name="unoseis[]" value="2"> Planes departamentales de desarrollo
-						</label>
-						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" name="unoseis[]" value="3"> Planes locales de desarrollo
-						</label>
-						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" name="unoseis[]" value="4">Ninguno de los anteriores
-						</label>
-						<label id="unoseisC" class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" name="unoseis[]" value="5">Otro
-						</label>
-						<div class="col-sm-4 col-xs-6">
-							<input style="display:none" id="unoseisotro" name="unoseisotro" class="form-control" type="text" placeholder="Aquí el otro valor">
-						</div>
-					</div>
-					<div style="margin-top:5px" class="col-sm-8">
-						<textarea placeholder="Por favor, justifique su respuesta" name="unoseisuno" ng-model="unoseisuno" rows="2" class="form-control" required></textarea>
-					</div>
-				</div>
-
-				<h1>Aportes académicos del proyecto.</h1>
-
-				<div class="form-group" ng-class="{ 'has-error' : formForm.dosuno.$invalid }">
-					<label class="col-sm-3 control-label" >¿Qué aportes al conocimiento produjo la ejecución del proyecto?:<label class="obligatorio"> *</label></label>
-					<div class="col-sm-8">
-						<textarea placeholder="Escriba acá los aportes" name="dosuno" ng-model="dosuno" rows="4" class="form-control" required></textarea>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-sm-3 control-label" >¿Qué tipos de aporte a la docencia realizó el proyecto?:<label class="obligatorio"> *</label></label>
-					<div class="btn-group col-sm-8" data-toggle="buttons">
-						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" name="dosdos[]" value="1">Plan de estudios.
-						</label>
-						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" name="dosdos[]" value="2"> Programas de las asignaturas
-						</label>
-						<label class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" name="dosdos[]" value="3"> Metodologías de enseñanza
-						</label>
-						<label id="dosdosN" class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" name="dosdos[]" value="5">No hubo
-						</label>
-						<label id="dosdosC" class="btn btn-primary">
-							<input type="checkbox" autocomplete="off" name="dosdos[]" value="4">Otro
-						</label>
-						<div class="col-sm-4 col-xs-6">
-							<input style="display:none" id="dosdosotro" name="dosdosotro" class="form-control" type="text" placeholder="Aquí el otro valor">
-						</div>
-					</div>
-				</div>
-
-				<div id="dostres" class="form-group">
-					<label class="col-sm-3 control-label">¿Cuál fue su aporte en este tema?:<label class="obligatorio"> *</label></label>
-					<div class="col-sm-8">
-						<textarea placeholder="Escriba acá los aportes" name="dostres" rows="4" class="form-control"></textarea>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-sm-3 control-label" >¿El proyecto produjo alguna innovación?:<label class="obligatorio"> *</label></label>
-					<div class="btn-group col-sm-8" data-toggle="buttons">
-						<label id="doscuatroS" class="btn btn-primary">
-							<input type="radio" name="doscuatro" value="1"> Sí
-						</label>
-						<label id="doscuatroN" class="btn btn-primary">
-							<input type="radio" name="doscuatro" value="0"> No
-						</label>
-					</div>
-				</div>
-
-				<div id="block2">
-					<div class="form-group">
-						<label class="col-sm-3 control-label">¿Qué aportes en términos de innovación (tecnológica, metodológica, instrumental, social, pedagógica, entre otras) produjo la ejecución del proyecto?:<label class="obligatorio"> *</label></label>
-						<div class="col-sm-8">
-							<textarea placeholder="Escriba acá los aportes" name="doscinco" rows="4" class="form-control"></textarea>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="col-sm-3 control-label">¿De qué manera estos aportes se incorporaron a líneas de investigación o al desarrollo académico de la Universidad?:<label class="obligatorio"> *</label></label>
-						<div class="col-sm-8">
-							<textarea placeholder="Escriba su respuesta acá" name="dosseis" rows="4" class="form-control"></textarea>
-						</div>
-					</div>
-				</div>
-
-				<h1>Incidencia</h1>
-
-				<div class="form-group">
-					<label class="col-sm-3 control-label" >¿El proyecto contribuyó a la formulación, evaluación o ejecución de las políticas públicas?:<label class="obligatorio"> *</label></label>
-					<div class="btn-group col-sm-8" data-toggle="buttons">
-						<label id="tresunoS" class="btn btn-primary">
-							<input type="radio" name="tresuno" value="1"> Sí
-						</label>
-						<label id="tresunoN" class="btn btn-primary">
-							<input type="radio" name="tresuno" value="0"> No
-						</label>
-					</div>
-				</div>
-
-				<div id="block3uno">
-					<div class="form-group">
-						<label class="col-sm-3 control-label">¿A cuál política?:<label class="obligatorio"> *</label></label>
-						<div class="col-sm-8">
-							<textarea placeholder="Escriba acá su respuesta" name="tresdos" rows="1" class="form-control"></textarea>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="col-sm-3 control-label">¿De qué forma?:<label class="obligatorio"> *</label></label>
-						<div class="col-sm-8">
-							<textarea placeholder="Escriba acá su respuesta" name="trestres" rows="3" class="form-control"></textarea>
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-sm-3 control-label" >¿El proyecto realizó una línea base de caracterización?:<label class="obligatorio"> *</label></label>
-					<div class="btn-group col-sm-8" data-toggle="buttons">
-						<label id="trescuatroS" class="btn btn-primary">
-							<input type="radio" name="trescuatro" value="1"> Sí
-						</label>
-						<label id="trescuatroN" class="btn btn-primary">
-							<input type="radio" name="trescuatro" value="0"> No
-						</label>
-					</div>
-				</div>
-
-				<div id="trescinco" class="form-group">
-					<label class="col-sm-3 control-label" >¿Esta línea estableció la situación de partida en materia de Derechos Humanos?:<label class="obligatorio"> *</label></label>
-					<div class="btn-group col-sm-8" data-toggle="buttons">
-						<label class="btn btn-primary">
-							<input type="radio" name="trescinco" value="1"> Sí
-						</label>
-						<label class="btn btn-primary">
-							<input type="radio" name="trescinco" value="0"> No
-						</label>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-sm-3 control-label" >¿El proyecto contribuyó a la promoción, garantía o restitución de Derechos Humanos?:<label class="obligatorio"> *</label></label>
-					<div class="btn-group col-sm-8" data-toggle="buttons">
-						<label id="tresseisS" class="btn btn-primary">
-							<input type="radio" name="tresseis" value="1"> Sí
-						</label>
-						<label id="tresseisN" class="btn btn-primary">
-							<input type="radio" name="tresseis" value="0"> No
-						</label>
-					</div>
-				</div>
-
-				<div id="tressiete" class="form-group">
-					<label class="col-sm-3 control-label">¿De qué forma?:<label class="obligatorio"> *</label></label>
-					<div class="col-sm-8">
-						<textarea placeholder="Escriba acá su respuesta" name="tressiete" rows="3" class="form-control"></textarea>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-sm-3 control-label" >¿El proyecto contribuyó a las decisiones corporativas o políticas de la institución y/o la empresa? :<label class="obligatorio"> *</label></label>
-					<div class="btn-group col-sm-8" data-toggle="buttons">
-						<label id="tresochoS" class="btn btn-primary">
-							<input type="radio" name="tresocho" value="1"> Sí
-						</label>
-						<label id="tresochoN" class="btn btn-primary">
-							<input type="radio" name="tresocho" value="0"> No
-						</label>
-					</div>
-				</div>
-
-				<div id="block3dos">
-					<div class="form-group">
-						<label class="col-sm-3 control-label">¿A qué tipo de decisiones?:<label class="obligatorio"> *</label></label>
-						<div class="col-sm-8">
-							<textarea placeholder="Escriba acá su respuesta" name="tresnueve" rows="2" class="form-control"></textarea>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="col-sm-3 control-label">¿De qué forma?:<label class="obligatorio"> *</label></label>
-						<div class="col-sm-8">
-							<textarea placeholder="Escriba acá su respuesta" name="tresdiez" rows="3" class="form-control"></textarea>
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-sm-3 control-label" >¿El proyecto aplicó algún tipo de instrumento para medir la percepción de satisfacción de los usuarios o beneficiarios?:<label class="obligatorio"> *</label></label>
-					<div class="btn-group col-sm-8" data-toggle="buttons">
-						<label class="btn btn-primary">
-							<input type="radio" name="tresonce" value="1"> Sí
-						</label>
-						<label class="btn btn-primary">
-							<input type="radio" name="tresonce" value="0"> No
-						</label>
-					</div>
-					<div class="col-sm-8" ng-class="{ 'has-error' : formForm.tresonceW.$invalid }">
-						<textarea placeholder="¿Por qué?" name="tresonceW" ng-model="tresonceW" rows="1" class="form-control" required></textarea>
-					</div>
-				</div>
-
-			  <div class="form-group form-group-lg">
-					<label class="col-sm-2 control-label" for="formGroupInputLarge">Los campos marcados con
-					<label class="obligatorio"> * </label> son obligatorios</label>
-			  </div>
-
-				<button type="submit" class="btn btn-primary btn-lg" ng-disabled="formForm.$invalid">Enviar</button>
-			</form>
-		</div>
-
-		<script type="text/javascript" src="js/directives/angucomplete.js"></script>
-		<script type="text/javascript" src="js/controller.js"></script>
-
-    <script src="js/bootstrap.js"></script>
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
 	</body>
 </html>

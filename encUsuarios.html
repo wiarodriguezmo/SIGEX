@@ -1,15 +1,23 @@
-<!DOCTYPE  html>
-<html lang="es" ng-app="app2">
+<html ng-app="app2">
 	<head>
-		<meta charset="UTF-8" />
-		<link rel=icon href=images/logo.png sizes="16x16" type="image/png">
+		<title>Proyecto OBEX</title>
+		<meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"  />
+		<link rel=icon href=images/logo.png sizes="16x16" type="image/png">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" type="text/css" href="css/angucomplete.css"/>
-		<link rel="stylesheet" type="text/css" href="css/style.css"  />
 		<script type="text/javascript" src="js/angular.min.js"></script>
+
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.js"></script>
 		<script src="js/ui-bootstrap-tpls-0.12.0.js"></script>
 		<script src="js/angular-locale_es-co.js"></script>
-		<script src="js/jquery.js"></script>
+
+
+		<script type="text/javascript" src="js/app.js"></script>
+		<script type="text/javascript" src="js/directives/angucomplete.js"></script>
+		<script type="text/javascript" src="js/controller.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
 					$("#vinculadoN").click(function(){
@@ -34,306 +42,357 @@
 					  $('[data-toggle="tooltip"]').tooltip()
 					})
 			});
-		</script>
+		</script >
+
 	</head>
-	<body style="background-color: rgba(231, 199, 242, 1);">
+	<body>
+			<section id="one" class="main special">
+				<div style="width: 45em;" class="container">
+					<span class="image fit primary"><img src="http://gabrielparradoconferencias.com/images/pic02.jpg" alt="" /></span>
+					<div class="content">
+						<div style="margin:-4em 0 2em 0; background: url('images/un.png') no-repeat center; height:170px" alt="Escudo Universidad Nacional de Colombia" /></div>
+						<header class="major">
+							<a href="index.html"><h2>Proyecto OBEX</h2></a>
+						</header>
+						<div class="container-fluid" id="formulario" ng-controller="formulario2">
+							<div style="margin-top:2em" class="row">
+								 <div class="col-md-6">
+								 		<div style="margin:-4em 0 2em 0; background: url('images/usuario.png') no-repeat center; height:230px" alt="Escudo Universidad Nacional de Colombia" /></div>
+								 </div>
+								 <div class="col-md-6"><h1 id="title">{{ mensaje2 }}</h1></div>
+							</div>
+							<form action="php/encU.php" method="post" name="encUForm" class="form-horizontal" novalidate>
 
-		<div class="container-fluid" id="formulario" ng-controller="formulario2">
-			<h1>{{ mensaje2 }}</h1>
+								<div class="form-group form-group-lg">
+									<label class="col-md-6 control-label">Proyecto </label>
+								</div>
+								<div class="form-group form-group-lg">
+									<div class="col-md-12">
+										<div class="padded-row">
+											<angucomplete id="members" required
+											placeholder="Buscar por nombre del proyecto"
+											pause="400"
+											selectedobject="s"
+											url="php/consProy.php?proy="
+											datafield="records"
+											titlefield="nombre"
+											descriptionfield="descrip"
+											inputclass="form-control form-control-small" />
+										</div>
+										<div class="" ng-show="s">
+											Has seleccionado: <i><b>{{s.originalObject.nombre}}</b></i>
+										</div>
+										<div style="color: red" class="" ng-show="!s">
+											Por favor escoja un item del autocompletar (Escriba una palabra clave y espere las opciones)
+										</div>
+										<input style="display:none" name="proyecto" type="text" ng-model="s.originalObject.nombre" required>
+									</div>
+								</div>
 
-			<form action="php/encU.php" method="post" class="form-horizontal" name="encUForm" novalidate>
 
-				<div class="form-group form-group-lg">
-					<label class="col-sm-3 control-label">Proyecto<label class="obligatorio"> *</label></label>
-					<div class="col-sm-8">
-						<div class="padded-row">
-							<angucomplete id="members" required
-							placeholder="Buscar por nombre del proyecto"
-							pause="400"
-							selectedobject="s"
-							url="php/consProy.php?proy="
-							datafield="records"
-							titlefield="nombre"
-							descriptionfield="descrip"
-							inputclass="form-control form-control-small" />
+							  <div class="form-group form-group-lg" ng-class="{ 'has-error' : encPForm.nombrePart.$invalid }">
+									<label class="col-md-6 control-label">Participante </label>
+								</div>
+								<div class="form-group form-group-lg" ng-class="{ 'has-error' : encPForm.nombrePart.$invalid }">
+									<div class="col-md-12">
+									  <input class="form-control" type="text" placeholder="Nombre del participante" name="nombrePart" ng-model="user" ng-change="existente()" required>
+									</div>
+									<div ng-show="exist[0].existe=='NO'" class="col-md-6">
+									  <input class="form-control" ng-model="dt"  name="fecha" type="date" ng-disabled="!(edadn==null || edadn=='')" placeholder="Fecha nacimiento" ng-click="open($event)" >
+										<input class="dropdown-menu dropdown-menu-right" type="hidden" datepicker-popup="yyyy-MM-dd" ng-model="dt" is-open="opened" close-text="Close" />
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+										</span>
+									</div>
+									<div class="col-md-6">
+										<input ng-show="exist[0].existe=='NO'" class="form-control" ng-model="edadn" ng-disabled="!(dt==null || dt=='')" type="text" placeholder="Edad (si desconoce fecha de nacimiento)" name="edad">
+									</div>
+									<div class="col-md-6">
+										<input ng-show="exist[0].existe=='NO'" class="form-control" ng-model="lugarn" type="text" placeholder="Lugar de nacimiento" name="lugarn">
+									</div>
+							  </div>
+
+								<div class="clear"></div><br>
+								<hr class='separador_post'/>
+
+								<div class="form-group">
+									<label class="col-md-12 control-label">¿El encuestado tiene algún vínculo con el proyecto en mención? </label>
+								</div>
+								<div class="form-group">
+									<div class="btn-group col-sm-8" data-toggle="buttons">
+										<label id="vinculadoS" class="btn btn-primary active">
+									    <input checked="checked" type="radio" name="vinculado" value="1"> SÍ
+									  </label>
+									  <label id="vinculadoN" class="btn btn-primary">
+									    <input type="radio" name="vinculado" value="0"> NO
+									  </label>
+									</div>
+								</div><br>
+
+								<div id="superblock">
+									<div class="form-group">
+										<label class="col-md-12 control-label"> ¿Cuál es el vínculo del entrevistado con el proyecto? </label>
+									</div>
+									<div class="form-group">
+										<div class="btn-group col-md-12" data-toggle="buttons">
+											<label class="btn btn-primary">
+										    <input type="radio" name="ceroCuatro" value="1"> Contratante
+										  </label>
+											<label class="btn btn-primary">
+										    <input type="radio" name="ceroCuatro" value="2"> Equipo contraparte de la Universidad Nacional
+										  </label>
+											<label class="btn btn-primary">
+										    <div data-toggle="tooltip" title="Par Técnico en el proyecto"><input type="radio" name="ceroCuatro" value="3"> Usuario</div>
+										  </label>
+											<label class="btn btn-primary">
+										    <div data-toggle="tooltip" title="Tercero de contacto directo con la UNAL"><input type="radio" name="ceroCuatro" value="4">Beneficiario</div>
+										  </label>
+										  <label id="ceroCuatro" class="btn btn-primary">
+										    <input type="radio" name="ceroCuatro" value="5"> Otro
+										  </label>
+											<div class="col-sm-4 col-xs-6 col-md-7">
+												<input style="display:none" id="ceroCuatroOtro" name="ceroCuatroOtro" class="form-control" type="text" placeholder="¿Cuál?">
+											</div>
+										</div>
+									</div>
+
+									<div class="clear"></div><br>
+									<hr class='separador_post'/>
+
+									<h1>Parte 1: Sector al que pertenece</h1><br>
+
+									<div class="form-group">
+										<label class="col-md-12 control-label" >1.1 ¿A qué sector de la sociedad pertenece Ud o su organización? </label>
+									</div>
+									<div class="form-group">
+										<div class="btn-group col-md-12" data-toggle="buttons">
+											<label class="col-md-6 btn btn-primary">
+										    <input type="radio" name="unouno" value="1">Sector privado
+										  </label>
+											<label class="col-md-6 btn btn-primary">
+										    <input type="radio" name="unouno" value="2"> Estado
+										  </label>
+											<label class="col-md-7 btn btn-primary">
+										    <input type="radio" name="unouno" value="3"> Organización social o comunitaria
+										  </label>
+											<label class="col-md-5 btn btn-primary">
+										    <input type="radio" name="unouno" value="4"> ONG
+										  </label>
+											<label id="unounoC" class="col-md-4 btn btn-primary">
+												<input type="radio" name="unouno" value="5">Otro
+											</label>
+											<div class="col-sm-4 col-xs-6 col-md-7">
+												<input style="display:none" id="unounootro" name="unounootro" class="form-control" type="text" placeholder="Aquí el otro valor">
+											</div>
+										</div>
+									</div><br>
+
+									<div class="form-group">
+										<label class="col-md-12 control-label" >1.2 En términos generales considera Ud. que los aportes del proyecto al desarrollo de la actividad docente o de los planes de estudio de la facultad ha sido: </label>
+									</div>
+									<div class="form-group">
+										<div class="btn-group col-md-12" data-toggle="buttons">
+											<label class="col-md-6 btn btn-primary">
+										    <input type="radio" name="unodos" value="1"> Muy satisfactorios, de gran importancia.
+										  </label>
+											<label class="col-md-6 btn btn-primary">
+										    <input type="radio" name="unodos" value="2"> Satisfactorios, importantes.
+										  </label>
+											<label class="col-md-6 btn btn-primary">
+										    <input type="radio" name="unodos" value="3"> Poco satisfactorios, escasamente importantes.
+										  </label>
+											<label class="col-md-6 btn btn-primary">
+										    <input type="radio" name="unodos" value="4">Insatisfactorios, irrelevantes.
+										  </label>
+											<div style="margin-top:5px" class="col-sm-12 col-md-12">
+												<textarea placeholder="Por favor, justifique su respuesta" name="unodosW" rows="2" class="form-control"></textarea>
+											</div>
+										</div>
+									</div>
+
+									<div class="clear"></div><br>
+									<hr class='separador_post'/>
+
+									<h1>Parte 2: Aportes del proyecto</h1><br>
+
+									<div class="form-group">
+										<label class="col-md-12 control-label" >2.1 ¿En términos generales considera que Ud. o su organización está utilizado conocimientos o prácticas aprendidos o perfeccionados durante el proyecto con la Universidad Nacional?:</label>
+									</div>
+									<div class="form-group">
+										<div class="btn-group col-md-12" data-toggle="buttons">
+											<label class="col-md-6 btn btn-primary">
+										    <input type="radio" name="dosuno" value="1"> De manera permanente
+										  </label>
+											<label class="col-md-6 btn btn-primary">
+										    <input type="radio" name="dosuno" value="2"> Continuamente
+										  </label>
+											<label class="col-md-6 btn btn-primary">
+										    <input type="radio" name="dosuno" value="3"> Pocas veces
+										  </label>
+											<label class="col-md-6 btn btn-primary">
+										    <input type="radio" name="dosuno" value="4">Nunca
+										  </label>
+										</div>
+									</div><br>
+
+									<div class="form-group">
+										<label class="col-md-12 control-label" >2.2 ¿En términos generales considera Ud. que los aportes del proyecto de la Universidad Nacional para LA SOCIEDAD EN GENERAL fueron?: </label>
+									</div>
+									<div class="form-group">
+										<div class="btn-group col-md-12" data-toggle="buttons">
+											<label class="col-md-6 btn btn-primary">
+												<input type="radio" name="dosdos" value="1"> Muy satisfactorios, de gran importancia.
+											</label>
+											<label class="col-md-6 btn btn-primary">
+												<input type="radio" name="dosdos" value="2"> Satisfactorios, importantes.
+											</label>
+											<label class="col-md-6 btn btn-primary">
+												<input type="radio" name="dosdos" value="3"> Poco satisfactorios, escasamente importantes.
+											</label>
+											<label class="col-md-6 btn btn-primary">
+												<input type="radio" name="dosdos" value="4">Insatisfactorios, irrelevantes.
+											</label>
+										</div>
+									</div>
+
+									<div class="clear"></div><br>
+									<hr class='separador_post'/>
+
+									<h1>Parte 3: Aspectos administrativos del proyecto</h1><br>
+
+									<div class="form-group">
+										<label class="col-md-12 control-label" >3.1 ¿Tuvo contacto con trámites administrativos u operativos de la Universidad para la ejecución del proyecto?: </label>
+									</div>
+									<div class="form-group">
+										<div class="btn-group col-md-12" data-toggle="buttons">
+											<label id="tresunoS" class="btn btn-primary">
+												<input type="radio" name="tresuno" value="1"> Sí
+											</label>
+											<label id="tresunoN" class="btn btn-primary">
+												<input type="radio" name="tresuno" value="0"> No
+											</label>
+										</div>
+									</div><br>
+
+									<div id="block3">
+										<div class="form-group">
+											<label class="col-md-12 control-label" >3.2 ¿Cómo calificaría la agilidad y oportunidad de los trámites al interior de la Universidad Nacional?:</label>
+											<div class="btn-group col-md-12" data-toggle="buttons">
+												<label class="col-md-6 btn btn-primary">
+													<input type="radio" name="tresdos" value="1">Muy ágiles y oportunos
+												</label>
+												<label class="col-md-6 btn btn-primary">
+													<input type="radio" name="tresdos" value="2"> Ágiles y oportunos
+												</label>
+												<label class="col-md-6 btn btn-primary">
+													<input type="radio" name="tresdos" value="3"> Poco ágiles y poco oportunos
+												</label>
+												<label class="col-md-6 btn btn-primary">
+													<input type="radio" name="tresdos" value="4">Lentos e inoportunos
+												</label>
+											</div>
+										</div><br>
+
+										<div class="form-group">
+											<label class="col-md-12 control-label" >¿Cómo calificaría la transparencia en los trámites al interior de la Universidad Nacional?: </label>
+										</div>
+										<div class="form-group">
+											<div class="btn-group col-md-12" data-toggle="buttons">
+												<label class="col-md-6 btn btn-primary">
+													<input type="radio" name="trestres" value="1">Muy transparentes
+												</label>
+												<label class="col-md-6 btn btn-primary">
+													<input type="radio" name="trestres" value="2"> Transparentes
+												</label>
+												<label class="col-md-6 btn btn-primary">
+													<input type="radio" name="trestres" value="3"> Poco transparentes
+												</label>
+												<label class="col-md-6 btn btn-primary">
+													<input type="radio" name="trestres" value="4">Nada transparentes
+												</label>
+											</div>
+										</div>
+									</div>
+
+									<div class="clear"></div><br>
+									<hr class='separador_post'/>
+
+									<h1>Parte 4: Percepción general</h1><br>
+
+									<div class="form-group">
+										<label class="col-md-12 control-label" >4.1 ¿En términos generales considera que el servicio recibido durante el proyecto por parte de la Universidad Nacional fue?:</label>
+									</div>
+									<div class="form-group">
+										<div class="btn-group col-md-12" data-toggle="buttons">
+											<label class="col-md-10 btn btn-primary">
+												<input type="radio" name="cuatrouno" value="1">Muy satisfactorio, supero mis expectativas
+											</label>
+											<label class="col-md-10 btn btn-primary">
+												<input type="radio" name="cuatrouno" value="2"> Satisfactorio, era lo esperado
+											</label>
+											<label class="col-md-10 btn btn-primary">
+												<input type="radio" name="cuatrouno" value="3"> Poco satisfactorio, no colmo las expectativas que se tenían
+											</label>
+											<label class="col-md-10 btn btn-primary">
+												<input type="radio" name="cuatrouno" value="4">Nada satisfactorio, muy por debajo de lo esperado
+											</label>
+										</div>
+									</div><br>
+
+									<div class="form-group">
+										<label class="col-md-12 control-label" >4.2 ¿Volvería Ud. a utilizar o a participar en proyectos de extensión de la Universidad Nacional?: </label>
+									</div>
+									<div class="form-group">
+										<div class="btn-group col-md-12" data-toggle="buttons">
+											<label class="col-md-6 btn btn-primary">
+												<input type="radio" name="cuatrodos" value="1">Sin excepción alguna
+											</label>
+											<label class="col-md-6 btn btn-primary">
+												<input type="radio" name="cuatrodos" value="2">Cuando las circunstancias lo ameriten
+											</label>
+											<label class="col-md-6 btn btn-primary">
+												<input type="radio" name="cuatrodos" value="3">Analizaría primero otras alternativas
+											</label>
+											<label class="col-md-6 btn btn-primary">
+												<input type="radio" name="cuatrodos" value="4">Nunca lo volvería a hacer
+											</label>
+										</div>
+									</div><br>
+
+									<div class="form-group">
+										<label class="col-md-12 control-label" >4.3 Considera Ud. A la Universidad Nacional como:</label>
+									</div>
+									<div class="form-group">
+										<div class="btn-group col-md-12" data-toggle="buttons">
+											<label class="col-md-6 btn btn-primary">
+												<input type="radio" name="cuatrotres" value="1">Muy confiable
+											</label>
+											<label class="col-md-6 btn btn-primary">
+												<input type="radio" name="cuatrotres" value="2">Confiable
+											</label>
+											<label class="col-md-6 btn btn-primary">
+												<input type="radio" name="cuatrotres" value="3">Poco confiable
+											</label>
+											<label class="col-md-6 btn btn-primary">
+												<input type="radio" name="cuatrotres" value="4">Nada confiable
+											</label>
+										</div>
+									</div><br>
+								</div>
+								<button style="color: white" type="submit" ng-disabled="encUForm.$invalid" class="btn btn-primary btn-lg">Enviar</button>
+							</form>
 						</div>
-						<div class="" ng-show="s">
-							Has seleccionado: <i><b>{{s.originalObject.nombre}}</b></i>
-						</div>
-						<div style="color: red" class="" ng-show="!s">
-							Por favor escoja un item del autocompletar (Escriba una palabra clave y espere las opciones)
-						</div>
-						<input style="display:none" name="proyecto" type="text" ng-model="s.originalObject.nombre" required>
 					</div>
 				</div>
+			</section>
 
-			  <div class="form-group form-group-lg" ng-class="{ 'has-error' : encUForm.nombrePart.$invalid }">
-					<label class="col-sm-3 control-label" for="formGroupInputLarge">Participante<label class="obligatorio"> *</label></label>
-					<div class="row">
-						<div class="col-xs-3">
-						  <input class="form-control" type="text" placeholder="Nombre del participante" name="nombrePart" ng-model="user" ng-change="existente()" required>
-						</div>
-						<div ng-show="exist[0].existe=='NO'" class="col-xs-2">
-						  <input class="form-control" ng-model="dt"  name="fecha" type="date" ng-disabled="!(edadn==null || edadn=='')" placeholder="Fecha nacimiento" ng-click="open($event)" >
 
-							<input class="dropdown-menu dropdown-menu-right" type="hidden" datepicker-popup="yyyy-MM-dd" ng-model="dt" is-open="opened" close-text="Close" />
-							<span class="input-group-btn">
-								<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-							</span>
-						</div>
-						<div class="col-xs-2">
-							<input ng-show="exist[0].existe=='NO'" class="form-control" ng-model="edadn" ng-disabled="!(dt==null || dt=='')" type="text" placeholder="Edad (si desconoce fecha de nacimiento)" name="edad">
-						</div>
-						<div style="margin-left:26%" class="col-xs-3">
-							<input ng-show="exist[0].existe=='NO'" class="form-control" ng-model="lugarn" type="text" placeholder="Lugar de nacimiento" name="lugarn">
-						</div>
-					</div>
-			  </div>
-
-				<div class="form-group">
-					<label class="col-sm-3 control-label">¿El encuestado tiene algún vínculo con el proyecto en mención?<label class="obligatorio"> *</label></label>
-					<div class="btn-group col-sm-8" data-toggle="buttons">
-						<label id="vinculadoS" class="btn btn-primary active">
-					    <input checked="checked" type="radio" name="vinculado" value="1"> SÍ
-					  </label>
-					  <label id="vinculadoN" class="btn btn-primary">
-					    <input type="radio" name="vinculado" value="0"> NO
-					  </label>
-					</div>
-				</div>
-
-				<div id="superblock">
-
-					<div class="form-group">
-						<label class="col-sm-3 control-label"> ¿Cuál es el vínculo del entrevistado con el proyecto?<label class="obligatorio"> *</label></label>
-						<div class="btn-group col-sm-8" data-toggle="buttons">
-							<label class="btn btn-primary">
-						    <input type="radio" name="ceroCuatro" value="1"> Contratante
-						  </label>
-							<label class="btn btn-primary">
-						    <input type="radio" name="ceroCuatro" value="2"> Equipo contraparte de la Universidad Nacional
-						  </label>
-							<label class="btn btn-primary">
-						    <div data-toggle="tooltip" title="Par Técnico en el proyecto"><input type="radio" name="ceroCuatro" value="3"> Usuario</div>
-						  </label>
-							<label class="btn btn-primary">
-						    <div data-toggle="tooltip" title="Tercero de contacto directo con la UNAL"><input type="radio" name="ceroCuatro" value="4"> Beneficiario</div>
-						  </label>
-							<label id="ceroCuatro" class="btn btn-primary">
-						    <input type="radio" name="ceroCuatro" value="5">Otro
-						  </label>
-							<div class="col-sm-4 col-xs-6">
-								<input style="display:none" id="ceroCuatroOtro" name="ceroCuatroOtro" class="form-control" type="text" placeholder="¿Cuál?">
-							</div>
-						</div>
-					</div>
-
-					<h1>Sector al que pertenece</h1>
-
-					<div class="form-group">
-						<label class="col-sm-3 control-label" >¿A qué sector de la sociedad pertenece Ud o su organización?<label class="obligatorio"> *</label></label>
-						<div class="btn-group col-sm-8" data-toggle="buttons">
-							<label class="btn btn-primary">
-						    <input type="radio" name="unouno" value="1">Sector privado
-						  </label>
-							<label class="btn btn-primary">
-						    <input type="radio" name="unouno" value="2"> Estado
-						  </label>
-							<label class="btn btn-primary">
-						    <input type="radio" name="unouno" value="3"> Organización social o comunitaria
-						  </label>
-							<label class="btn btn-primary">
-						    <input type="radio" name="unouno" value="4"> ONG
-						  </label>
-							<label id="unounoC" class="btn btn-primary">
-						    <input type="radio" name="unouno" value="5">Otro
-						  </label>
-							<div class="col-sm-4 col-xs-6">
-								<input style="display:none" id="unounootro" name="unounootro" class="form-control" type="text" placeholder="Aquí el otro valor">
-							</div>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="col-sm-3 control-label" >En términos generales considera Ud. que los aportes del proyecto de la Universidad Nacional para SU SECTOR fueron?:<label class="obligatorio"> *</label></label>
-						<div class="btn-group col-sm-8" data-toggle="buttons">
-							<label class="btn btn-primary">
-						    <input type="radio" name="unodos" value="1"> Muy satisfactorios, de gran importancia.
-						  </label>
-							<label class="btn btn-primary">
-						    <input type="radio" name="unodos" value="2"> Satisfactorios, importantes.
-						  </label>
-							<label class="btn btn-primary">
-						    <input type="radio" name="unodos" value="3"> Poco satisfactorios, escasamente importantes.
-						  </label>
-							<label class="btn btn-primary">
-						    <input type="radio" name="unodos" value="4">Insatisfactorios, irrelevantes.
-						  </label>
-						</div>
-						<div style="margin-top:5px" class="col-sm-8">
-							<textarea placeholder="Por favor, justifique su respuesta" name="unodosW" rows="2" class="form-control"></textarea>
-						</div>
-					</div>
-
-					<h1>Aportes del proyecto</h1>
-
-					<div class="form-group">
-						<label class="col-sm-3 control-label" >¿En términos generales considera que Ud. o su organización está utilizado conocimientos o prácticas aprendidos o perfeccionados durante el proyecto con la Universidad Nacional?:<label class="obligatorio"> *</label></label>
-						<div class="btn-group col-sm-8" data-toggle="buttons">
-							<label class="btn btn-primary">
-						    <input type="radio" name="dosuno" value="1"> De manera permanente
-						  </label>
-							<label class="btn btn-primary">
-						    <input type="radio" name="dosuno" value="2"> Continuamente
-						  </label>
-							<label class="btn btn-primary">
-						    <input type="radio" name="dosuno" value="3"> Pocas veces
-						  </label>
-							<label class="btn btn-primary">
-						    <input type="radio" name="dosuno" value="4">Nunca
-						  </label>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="col-sm-3 control-label" >¿En términos generales considera Ud. que los aportes del proyecto de la Universidad Nacional para LA SOCIEDAD EN GENERAL fueron?:<label class="obligatorio"> *</label></label>
-						<div class="btn-group col-sm-8" data-toggle="buttons">
-							<label class="btn btn-primary">
-								<input type="radio" name="dosdos" value="1"> Muy satisfactorios, de gran importancia.
-							</label>
-							<label class="btn btn-primary">
-								<input type="radio" name="dosdos" value="2"> Satisfactorios, importantes.
-							</label>
-							<label class="btn btn-primary">
-								<input type="radio" name="dosdos" value="3"> Poco satisfactorios, escasamente importantes.
-							</label>
-							<label class="btn btn-primary">
-								<input type="radio" name="dosdos" value="4">Insatisfactorios, irrelevantes.
-							</label>
-						</div>
-					</div>
-
-					<h1>Aspectos administrativos del proyecto</h1>
-
-					<div class="form-group">
-						<label class="col-sm-3 control-label" >¿Tuvo contacto con trámites administrativos u operativos de la Universidad para la ejecución del proyecto?:<label class="obligatorio"> *</label></label>
-						<div class="btn-group col-sm-8" data-toggle="buttons">
-							<label id="tresunoS" class="btn btn-primary">
-								<input type="radio" name="tresuno" value="1"> Sí
-							</label>
-							<label id="tresunoN" class="btn btn-primary">
-								<input type="radio" name="tresuno" value="0"> No
-							</label>
-						</div>
-					</div>
-
-					<div id="block3">
-						<div class="form-group">
-							<label class="col-sm-3 control-label" >¿Cómo calificaría la agilidad y oportunidad de los trámites al interior de la Universidad Nacional?:<label class="obligatorio"> *</label></label>
-							<div class="btn-group col-sm-8" data-toggle="buttons">
-								<label class="btn btn-primary">
-									<input type="radio" name="tresdos" value="1">Muy ágiles y oportunos
-								</label>
-								<label class="btn btn-primary">
-									<input type="radio" name="tresdos" value="2"> Ágiles y oportunos
-								</label>
-								<label class="btn btn-primary">
-									<input type="radio" name="tresdos" value="3"> Poco ágiles y poco oportunos
-								</label>
-								<label class="btn btn-primary">
-									<input type="radio" name="tresdos" value="4">Lentos e inoportunos
-								</label>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-sm-3 control-label" >¿Cómo calificaría la transparencia en los trámites al interior de la Universidad Nacional?:<label class="obligatorio"> *</label></label>
-							<div class="btn-group col-sm-8" data-toggle="buttons">
-								<label class="btn btn-primary">
-									<input type="radio" name="trestres" value="1">Muy transparentes
-								</label>
-								<label class="btn btn-primary">
-									<input type="radio" name="trestres" value="2"> Transparentes
-								</label>
-								<label class="btn btn-primary">
-									<input type="radio" name="trestres" value="3"> Poco transparentes
-								</label>
-								<label class="btn btn-primary">
-									<input type="radio" name="trestres" value="4">Nada transparentes
-								</label>
-							</div>
-						</div>
-					</div>
-
-					<h1>Percepción general</h1>
-
-					<div class="form-group">
-						<label class="col-sm-3 control-label" >¿En términos generales considera que el servicio recibido durante el proyecto por parte de la Universidad Nacional fue?:<label class="obligatorio"> *</label></label>
-						<div class="btn-group col-sm-8" data-toggle="buttons">
-							<label class="btn btn-primary">
-								<input type="radio" name="cuatrouno" value="1">Muy satisfactorio, supero mis expectativas
-							</label>
-							<label class="btn btn-primary">
-								<input type="radio" name="cuatrouno" value="2"> Satisfactorio, era lo esperado
-							</label>
-							<label class="btn btn-primary">
-								<input type="radio" name="cuatrouno" value="3"> Poco satisfactorio, no colmo las expectativas que se tenían
-							</label>
-							<label class="btn btn-primary">
-								<input type="radio" name="cuatrouno" value="4">Nada satisfactorio, muy por debajo de lo esperado
-							</label>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="col-sm-3 control-label" >¿Volvería Ud. a utilizar o a participar en proyectos de extensión de la Universidad Nacional?:<label class="obligatorio"> *</label></label>
-						<div class="btn-group col-sm-8" data-toggle="buttons">
-							<label class="btn btn-primary">
-								<input type="radio" name="cuatrodos" value="1">Sin excepción alguna
-							</label>
-							<label class="btn btn-primary">
-								<input type="radio" name="cuatrodos" value="2">Cuando las circunstancias lo ameriten
-							</label>
-							<label class="btn btn-primary">
-								<input type="radio" name="cuatrodos" value="3">Analizaría primero otras alternativas
-							</label>
-							<label class="btn btn-primary">
-								<input type="radio" name="cuatrodos" value="4">Nunca lo volvería a hacer
-							</label>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label class="col-sm-3 control-label" >Considera Ud. A la Universidad Nacional como:<label class="obligatorio"> *</label></label>
-						<div class="btn-group col-sm-8" data-toggle="buttons">
-							<label class="btn btn-primary">
-								<input type="radio" name="cuatrotres" value="1">Muy confiable
-							</label>
-							<label class="btn btn-primary">
-								<input type="radio" name="cuatrotres" value="2">Confiable
-							</label>
-							<label class="btn btn-primary">
-								<input type="radio" name="cuatrotres" value="3">Poco confiable
-							</label>
-							<label class="btn btn-primary">
-								<input type="radio" name="cuatrotres" value="4">Nada confiable
-							</label>
-						</div>
-					</div>
-				</div>
-			  <div class="form-group form-group-lg">
-					<label class="col-sm-2 control-label" for="formGroupInputLarge">Los campos marcados con
-					<label class="obligatorio"> * </label> son obligatorios</label>
-			  </div>
-
-				<button type="submit" ng-disabled="encUForm.$invalid" class="btn btn-primary btn-lg">Enviar</button>
-			</form>
-		</div>
-
-		<script type="text/javascript" src="js/app.js"></script>
-		<script type="text/javascript" src="js/directives/angucomplete.js"></script>
-		<script type="text/javascript" src="js/controller.js"></script>
-    <script src="js/bootstrap.js"></script>
-
+		<!-- Scripts -->
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
 	</body>
 </html>
