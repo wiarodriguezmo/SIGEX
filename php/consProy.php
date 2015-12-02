@@ -3,7 +3,7 @@ header("Content-Type: application/json; charset=UTF-8");
 $servername = "localhost";
 $username = "root";
 $password = "212216priac";
-$dbname = "priac";
+$dbname = "proof";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

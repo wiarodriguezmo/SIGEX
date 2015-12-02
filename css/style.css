@@ -18,4 +18,5 @@ input.ng-invalid.ng-touched {
 
 #title {font-family: 'Lobster', cursive;
   font-size: 2.4em;
+   text-align: left; 
 }

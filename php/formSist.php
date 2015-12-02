@@ -4,7 +4,7 @@ header('Content-Type: text/html; charset=UTF-8');
 $servername = "localhost";
 $username = "root";
 $password = "212216priac";
-$dbname = "priac";
+$dbname = "proof";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -39,7 +39,13 @@ if(!(empty($_POST['unotres']))){
     }
 }
 $unotresotro = $_POST['unotresotro'];
-$unocuatro = $_POST['unocuatro'];
+$unocuatro = "";
+if(!(empty($_POST['unocuatro']))){
+    foreach($_POST['unocuatro'] as $ucuatro){
+        $unocuatro .= $ucuatro.",";
+    }
+}
+$unocuatro .= $_POST['unocuatrootro'];
 $unocinco = $_POST['unocinco'];
 $unocincoW = $_POST['unocincoW'];
 $unoseis = "";
@@ -63,6 +69,7 @@ $dostres = $_POST['dostres'];
 $doscuatro = $_POST['doscuatro'];
 $doscinco = $_POST['doscinco'];
 $dosseis = $_POST['dosseis'];
+$dossiete = $_POST['dossiete'];
 
 $tresuno = $_POST['tresuno'];
 $tresdos = $_POST['tresdos'];
@@ -75,7 +82,7 @@ $tresocho = $_POST['tresocho'];
 $tresnueve = $_POST['tresnueve'];
 $tresdiez = $_POST['tresdiez'];
 $tresonce = $_POST['tresonce'];
-$tresoncew = $_POST['tresonceW'];
+$tresdoce = $_POST['tresdoce'];
 
 if($fecha.$edadn.$lugarn != ""){
   if ($edadn == "") {
@@ -95,7 +102,7 @@ $rs = $result->fetch_array(MYSQLI_ASSOC);
 $proyecto = $rs['idProyecto'];
 
 
-$sql = "INSERT INTO FormSistemat(`1.1`, `1.1Otro`, `1.2`, `1.3`, `1.3Otro`, `1.4`, `1.5`, `1.5why`, `1.6`, `1.6Otro`, `1.6.1`, `2.1`, `2.2`, `2.2Otro`, `2.3`, `2.4`, `2.5`, `2.6`, `3.1`, `3.2`, `3.3`, `3.4`, `3.5`, `3.6`, `3.7`, `3.8`, `3.9`, `3.10`, `3.11`, `3.11why`, `director`, `proyecto`) VALUES ('".$unouno."','".$unounootro."','".$unodos."','".$unotres."','".$unotresotro."','".$unocuatro."','".$unocinco."','".$unocincoW."','".$unoseis."','".$unoseisotro."','".$unoseisuno."','".$dosuno."', '". $dosdos ."', '". $dosdosotro ."', '".$dostres."', '".$doscuatro."','".$doscinco."','".$dosseis."','".$tresuno."','".$tresdos."','".$trestres."','".$trescuatro."','".$trescinco."','".$tresseis."','".$tressiete."','".$tresocho."','".$tresnueve."','".$tresdiez."','".$tresonce."','".$tresoncew."','".$participante."','".$proyecto."')";
+$sql = "INSERT INTO FormSistemat(`1.1`, `1.1Otro`, `1.2`, `1.3`, `1.3Otro`, `1.4`, `1.5`, `1.5why`, `1.6`, `1.6Otro`, `1.6.1`, `2.1`, `2.2`, `2.2Otro`, `2.3`, `2.4`, `2.5`, `2.6`, `2.7`, `3.1`, `3.2`, `3.3`, `3.4`, `3.5`, `3.6`, `3.7`, `3.8`, `3.9`, `3.10`, `3.11`, `3.12`, `director`, `proyecto`) VALUES ('".$unouno."','".$unounootro."','".$unodos."','".$unotres."','".$unotresotro."','".$unocuatro."','".$unocinco."','".$unocincoW."','".$unoseis."','".$unoseisotro."','".$unoseisuno."','".$dosuno."', '". $dosdos ."', '". $dosdosotro ."', '".$dostres."', '".$doscuatro."','".$doscinco."','".$dosseis."','".$dossiete."','".$tresuno."','".$tresdos."','".$trestres."','".$trescuatro."','".$trescinco."','".$tresseis."','".$tressiete."','".$tresocho."','".$tresnueve."','".$tresdiez."','".$tresonce."','".$tresdoce."','".$participante."','".$proyecto."')";
 
 if ($conn->query($sql) === TRUE) {
 	header("Location: ../resp/exitoso.php?hizo=formato de sistematización");

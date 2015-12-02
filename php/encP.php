@@ -4,7 +4,7 @@ header('Content-Type: text/html; charset=UTF-8');
 $servername = "localhost";
 $username = "root";
 $password = "212216priac";
-$dbname = "priac";
+$dbname = "proof";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -69,7 +69,7 @@ $result = $conn->query($sqlP);
 $rs = $result->fetch_array(MYSQLI_ASSOC);
 $proyecto = $rs['idProyecto'];
 
-$sql = "INSERT INTO EncParticipantes(`0.3`, `0.4`, `0.4Otro`, `1.1`, `1.1Otro`, `1.2`, `1.3`, `1.4`, `1.5`, `1.6`, `1.7`, `2.1`, `2.2`, `2.3`, `2.4`, `2.5`, `2.6`, `2.7`, `participante`, `proy`) VALUES ('".$vinculado."', '". $ceroCuatro ."', '".$ceroCuatroOtro."', '".$unouno."', '".$unounootro."', '".$unodos."', '".$unotres."',  '".$unocuatro."', '".$unocinco."', '".$unoseis."', '".$unosiete."', '".$dosuno."', '".$dosdos."', '".$dostres."', '".$doscuatro."', '".$doscinco."', '".$dosseis."', '".$dossiete."', '".$participante."', '".$proyecto."')";
+$sql = "INSERT INTO EncParticipantes(`0.3`, `0.4`, `0.4Otro`, `1.1`, `1.1Otro`, `1.2`, `1.4`, `1.5`, `1.6`, `1.7`, `2.1`, `2.2`, `2.3`, `2.4`, `2.5`, `2.6`, `2.7`, `participante`, `proy`) VALUES ('".$vinculado."', '". $ceroCuatro ."', '".$ceroCuatroOtro."', '".$unouno."', '".$unounootro."', '".$unodos."', '".$unocuatro."', '".$unocinco."', '".$unoseis."', '".$unosiete."', '".$dosuno."', '".$dosdos."', '".$dostres."', '".$doscuatro."', '".$doscinco."', '".$dosseis."', '".$dossiete."', '".$participante."', '".$proyecto."')";
 
 if ($conn->query($sql) === TRUE) {
 	header("Location: ../resp/exitoso.php?hizo=Encuesta a Participantes");

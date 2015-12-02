@@ -11,9 +11,9 @@ angular.module('app', ['ui.bootstrap']).controller("formulario", function($scope
 });
 
 angular.module('app2', ["angucomplete",'ui.bootstrap']).controller("formulario2",	function($scope,$http){
-	$scope.mensaje = "Encuesta a Participantes en Servicios de Extensión";
-	$scope.mensaje2 = "Encuesta a Usuarios en Servicios de Extensión";
-	$scope.mensaje3 = "Formato de Sistematización de Proyectos en Servicios de Extensión"
+	$scope.mensaje = "Encuesta a integrantes del equipo de trabajo en Proyectos de Extensión";
+	$scope.mensaje2 = "Encuesta a Usuarios en Proyectos de Extensión";
+	$scope.mensaje3 = "Formato de Sistematización de Proyectos de Extensión"
 	// Evalúa si un usuario existe, si no habilita campos de registro
 	$scope.existente = function(){
 		$http.get("php/existente.php?variable1=" + $scope.user)

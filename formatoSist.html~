@@ -1,4 +1,4 @@
-<html style="background-image: url('images/overlay.png'), url('images/fondo_sistematizacion2.jpg') !important;" ng-app="app2">
+<html ng-app="app2">
 	<head>
 		<title>Proyecto OBEX</title>
 		<meta charset="utf-8" />
@@ -25,7 +25,7 @@
 					$("#unocuatrootro").show(800);
 				});
 				$("#unoseisC").click(function(){
-					$("#unoseisotro").show(800);fondo_sistematizacion2
+					$("#unoseisotro").show(800);
 				});
 				$("#dosdosC").click(function(){
 					$("#dosdosotro").show(800);
@@ -73,7 +73,7 @@
 					<div class="content">
 						<div style="margin:-4em 0 2em 0; background: url('images/un.png') no-repeat center; height:170px" alt="Escudo Universidad Nacional de Colombia" /></div>
 						<header class="major">
-							<a href="index.html"><h2>Proyecto OBEX</h2></a>
+							<h2>Proyecto OBEX</h2>
 						</header>
 						<div class="container-fluid" id="formulario" ng-controller="formulario2">
 							<div style="margin-top:2em" class="row">
@@ -443,7 +443,7 @@
 								</div>
 
 								<div class="form-group">
-									<label class="col-md-12 control-label" >3.4¿Se realizó una línea base de caracterización de la situación problemática antes del desarrollo del proyecto?:</label>
+									<label class="col-md-12 control-label" >3.4¿El proyecto realizó una línea base de caracterización?:</label>
 									<div class="btn-group col-md-12" data-toggle="buttons">
 										<label id="trescuatroS" class="btn btn-primary">
 											<input type="radio" name="trescuatro" value="1"> Sí
